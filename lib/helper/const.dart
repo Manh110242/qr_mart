@@ -10,6 +10,9 @@ class Const {
   String image_host = 'https://qrmart.vn/static';
   String key = 'key_nanoweb_ocop_2021_real';
   String api_host = 'https://qrmart.vn/api';
+String domain_2='http://hoidap.nanoweb.vn/api';
 
   static GetAPI web_api = new GetAPI(Const().api_host, Const().key);
+
+
 }

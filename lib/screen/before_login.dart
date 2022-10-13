@@ -30,10 +30,15 @@ class BeforeLogin extends StatelessWidget {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            Icons.check_circle,
-            size: 50,
-            color: Colors.green,
+          // Icon(
+          //   Icons.check_circle,
+          //   size: 50,
+          //   color: Colors.green,
+          // ),
+            Image.network(
+            'https://ocopmart.org/static/media/images/siteinfo/2021_07_30/s150_150/logo-web-1627642464.png',
+            height: 60,
+            width: 60,
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 5, top: 10),

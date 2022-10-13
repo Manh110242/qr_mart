@@ -29,7 +29,7 @@ import 'provider/firestore_data_provider_call_history.dart';
 Fetch_Data fetch_data_token = new Fetch_Data("/app/home/start", {});
 
 bool showCheckVersion = true;
-String appName = "QR Mart";
+String appName = "OCOP Mart";
 List logoVip = [];
 
 class SharedPreference {
@@ -61,7 +61,6 @@ class SharedPreference {
 }
 
 final prefs = SharedPreference();
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

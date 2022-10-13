@@ -166,7 +166,7 @@ class HomePageState extends State<HomePage> {
                               '${Const().domain}/', '$appName Company')));
                 },
                 child: Image.asset(
-                  "assets/images/logo.png",
+                  "assets/images/Group 8220.png",
                   width: 70,
                   height: 70,
                   fit: BoxFit.contain,

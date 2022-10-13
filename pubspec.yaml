@@ -96,7 +96,7 @@ flutter_native_splash:
   #flutter pub run flutter_native_splash:create
   color: "#ffffff"
   #background_image: "assets/images/icon app 2.png"
-  image: assets/images/ic_launcher.png
+  image: assets/images/icon app 2.png
 
   android_gravity: center
   ios_content_mode: center

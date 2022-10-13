@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as local;
+import 'package:gcaeco_app/bloc/bloc_getsite.dart';
 import 'package:gcaeco_app/bloc/bloc_notification.dart';
 import 'package:gcaeco_app/bloc/check_version.dart';
 import 'package:gcaeco_app/configs/db_keys.dart';
@@ -17,6 +18,7 @@ import 'package:gcaeco_app/helper/toast.dart';
 import 'package:gcaeco_app/item_share/pickup_layout.dart';
 import 'package:gcaeco_app/main.dart';
 import 'package:gcaeco_app/model/data_model.dart';
+import 'package:gcaeco_app/model/media/model_site.dart';
 import 'package:gcaeco_app/provider/available_contacts_provider.dart';
 import 'package:gcaeco_app/provider/currentchat_peer.dart';
 import 'package:gcaeco_app/provider/firestore_data_provider_call_history.dart';
@@ -149,7 +151,7 @@ class HomePageState extends State<Home> with WidgetsBindingObserver {
 
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   BlocNotification bloc = new BlocNotification();
-
+SiteBloc siteBloc=new SiteBloc();
   DataModel _cachedModel;
 
   DataModel getModel() {
@@ -838,10 +840,26 @@ class HomePageState extends State<Home> with WidgetsBindingObserver {
                       style: TextStyle(fontSize: 12),
                     )),
                 BottomNavigationBarItem(
-                    icon: Image.asset(
-                      "assets/images/logo_bottom.jpg",
-                      height: 40,
-                      width: 40,
+                    icon:
+
+                    FutureBuilder(
+                     future: siteBloc.getSite(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot){
+
+ModelSite model= snapshot.data as ModelSite;
+
+                        return Image.network(
+                        'https://ocopmart.org/static/media/images/siteinfo/2021_07_30/s150_150/logo-web-1627642464.png',
+                          height: 40,
+                          width: 40,
+                        );
+                      },
+                      // child:
+                      // Image.asset(
+                      //   "assets/images/logo_bottom.jpg",
+                      //   height: 40,
+                      //   width: 40,
+                      // ),
                     ),
                     title: Padding(padding: EdgeInsets.all(0))),
                 BottomNavigationBarItem(
