@@ -166,7 +166,7 @@ class HomePageState extends State<HomePage> {
                               '${Const().domain}/', '$appName Company')));
                 },
                 child: Image.asset(
-                  "assets/images/Group 8220.png",
+                  "assets/images/Asset 13.png",
                   width: 70,
                   height: 70,
                   fit: BoxFit.contain,
@@ -464,7 +464,7 @@ class HomePageState extends State<HomePage> {
             child: Row(
               children: [
                 Text(
-                  'OCOP AFFILIATE  ',
+                  '$appName AFFILIATE  ',
                   style: TextStyle(
                       color: Colors.orange,
                       fontSize: 13,
@@ -485,7 +485,7 @@ class HomePageState extends State<HomePage> {
                   MaterialPageRoute(
                       builder: (context) => WebViewContainer(
                           '${Const().domain}/site/charity.html',
-                          'Ocop Charity'.toUpperCase())));
+                          '$appName Charity'.toUpperCase())));
             },
             child: FutureBuilder(
                 future: category_bloc.getCharity(),
@@ -495,7 +495,7 @@ class HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Ocop CHARITY'.toUpperCase(),
+                          '$appName CHARITY'.toUpperCase(),
                           style: TextStyle(
                               color: Colors.orange,
                               fontSize: 13,
@@ -515,7 +515,7 @@ class HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Ocop CHARITY'.toUpperCase(),
+                          '$appName CHARITY'.toUpperCase(),
                           style: TextStyle(
                               color: Colors.orange,
                               fontSize: 13,

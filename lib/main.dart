@@ -20,16 +20,14 @@ import 'configs/db_keys.dart';
 import 'helper/const.dart';
 import 'helper/home_api.dart';
 import 'package:provider/provider.dart';
-
-import 'provider/available_contacts_provider.dart';
 import 'provider/firebase_broadcast_service.dart';
 import 'provider/firebase_group_service.dart';
 import 'provider/firestore_data_provider_call_history.dart';
-
+import 'firebase_options.dart';
 Fetch_Data fetch_data_token = new Fetch_Data("/app/home/start", {});
 
 bool showCheckVersion = true;
-String appName = "OCOP Mart";
+String appName = "QR Mart";
 List logoVip = [];
 
 class SharedPreference {
@@ -63,7 +61,9 @@ class SharedPreference {
 final prefs = SharedPreference();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   final SharedPreferences prefsa = await SharedPreferences.getInstance();
   var checkToken = await Const.web_api.getValueToken();
   print("============");
@@ -84,7 +84,7 @@ void main() async {
           debugShowCheckedModeBanner: false,
           home: Page404(
             err:
-                "Lấy thông tin Token không thành công. Vui lòng xóa dữ liệu ứng dụng và khởi động lại.",
+            "Lấy thông tin Token không thành công. Vui lòng xóa dữ liệu ứng dụng và khởi động lại.",
           ),
         ),
       ),

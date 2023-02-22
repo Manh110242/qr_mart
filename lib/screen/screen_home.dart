@@ -151,7 +151,7 @@ class HomePageState extends State<Home> with WidgetsBindingObserver {
 
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   BlocNotification bloc = new BlocNotification();
-SiteBloc siteBloc=new SiteBloc();
+  SiteBloc siteBloc = new SiteBloc();
   DataModel _cachedModel;
 
   DataModel getModel() {
@@ -265,7 +265,7 @@ SiteBloc siteBloc=new SiteBloc();
     prefs.init();
     _getToken();
     CheckVersion.check(context,
-        ios: "vn.com.ocop.mart", android: "com.ocop.mart");
+        ios: "vn.com.qrmart", android: "vn.com.qrmart");
     getSignedInUserOrRedirect();
     _configureFirebaseListeners();
   }
@@ -840,16 +840,13 @@ SiteBloc siteBloc=new SiteBloc();
                       style: TextStyle(fontSize: 12),
                     )),
                 BottomNavigationBarItem(
-                    icon:
+                    icon: FutureBuilder(
+                      future: siteBloc.getSite(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        ModelSite model = snapshot.data as ModelSite;
 
-                    FutureBuilder(
-                     future: siteBloc.getSite(),
-                      builder: (BuildContext context, AsyncSnapshot snapshot){
-
-ModelSite model= snapshot.data as ModelSite;
-
-                        return Image.network(
-                        'https://ocopmart.org/static/media/images/siteinfo/2021_07_30/s150_150/logo-web-1627642464.png',
+                        return Image.asset(
+                          'assets/images/Asset 13.png',
                           height: 40,
                           width: 40,
                         );

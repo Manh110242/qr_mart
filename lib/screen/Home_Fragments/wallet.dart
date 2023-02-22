@@ -13,6 +13,8 @@ import 'package:gcaeco_app/screen/wallet/transfer.dart';
 import 'package:gcaeco_app/screen/wallet/voucher_red.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../main.dart';
+
 class Wallet extends StatefulWidget {
 
   final SharedPreferences prefs;
@@ -98,7 +100,7 @@ class _Wallet_State extends State<Wallet> {
                           Icon(Icons.account_balance_wallet,color: Colors.orange,),
                           Padding(
                             padding: EdgeInsets.only(top: 10),
-                            child: Text('Voucher Ocop của tôi',
+                            child: Text('Voucher $appName của tôi',
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.center,
                               maxLines: 2,
@@ -124,7 +126,7 @@ class _Wallet_State extends State<Wallet> {
                           Icon(Icons.monetization_on,color: Colors.red,),
                           Padding(
                             padding: EdgeInsets.only(top: 10),
-                            child: Text('Rút Voucher Ocop Red',
+                            child: Text('Rút Voucher $appName Red',
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.center,
                               maxLines: 2,
@@ -150,7 +152,7 @@ class _Wallet_State extends State<Wallet> {
                           Icon(Icons.screen_share,color: Colors.orange,),
                           Padding(
                             padding: EdgeInsets.only(top: 10),
-                            child: Text('Chuyển, tặng Voucher Ocop',
+                            child: Text('Chuyển, tặng Voucher $appName',
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.center,
                               maxLines: 2,
@@ -176,7 +178,7 @@ class _Wallet_State extends State<Wallet> {
                           Icon(Icons.wifi_protected_setup,color: Colors.orange,),
                           Padding(
                             padding: EdgeInsets.only(top: 10),
-                            child: Text('Chuyển đổi Voucher Ocop',
+                            child: Text('Chuyển đổi Voucher $appName',
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.center,
                               maxLines: 2,

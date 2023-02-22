@@ -35,8 +35,8 @@ class BeforeLogin extends StatelessWidget {
           //   size: 50,
           //   color: Colors.green,
           // ),
-            Image.network(
-            'https://ocopmart.org/static/media/images/siteinfo/2021_07_30/s150_150/logo-web-1627642464.png',
+            Image.asset(
+            'assets/images/Asset 13.png',
             height: 60,
             width: 60,
           ),

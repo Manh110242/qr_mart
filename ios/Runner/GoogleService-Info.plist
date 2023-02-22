@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>492056735346-c4meetk1i337pu47l282f6id9h8q0gfi.apps.googleusercontent.com</string>
+	<string>124762349797-0ajimgnka397dfi2untupft14dujofcf.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.492056735346-c4meetk1i337pu47l282f6id9h8q0gfi</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>492056735346-d3qv6poh8hjpps449ppjeprjeocrjvpd.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.124762349797-0ajimgnka397dfi2untupft14dujofcf</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDlUx-MzhdhVs1sMgxqI9LKXeUyhkyIoZ4</string>
+	<string>AIzaSyD9PQxtXGSlkXXtk5hgfmouOuyV9jY4iLE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>492056735346</string>
+	<string>124762349797</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>vn.com.pga.partner</string>
+	<string>vn.com.ocop.mart</string>
 	<key>PROJECT_ID</key>
-	<string>pga-partner-a6373</string>
+	<string>qrmart-b2ba2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>pga-partner-a6373.appspot.com</string>
+	<string>qrmart-b2ba2.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:492056735346:ios:7b8c1d7e3c7970e90fdceb</string>
+	<string>1:124762349797:ios:aac36831b05fbc0b5cf40c</string>
 </dict>
 </plist>

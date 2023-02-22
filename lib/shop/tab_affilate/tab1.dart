@@ -7,6 +7,8 @@ import 'package:gcaeco_app/shop/item_shop/multi_select.dart';
 import 'package:gcaeco_app/shop/item_shop/text_field_2.dart';
 import 'package:gcaeco_app/helper/Config.dart';
 
+import '../../main.dart';
+
 class Tab1 extends StatefulWidget {
   @override
   _Tab1State createState() => _Tab1State();
@@ -238,7 +240,7 @@ class _Tab1State extends State<Tab1> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("% thưởng cho OCOP PARTNER"),
+              Text("% thưởng cho $appName PARTNER"),
               Text(snap.data['data']['affiliate_admin_waitting'] + "%"),
             ],
           ),
@@ -287,7 +289,7 @@ class _Tab1State extends State<Tab1> {
             Flexible(
                 flex: 4,
                 child: Text(
-                  "% thưởng cho OCOP PARTNER",
+                  "% thưởng cho $appName PARTNER",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 )),
@@ -413,7 +415,7 @@ class _Tab1State extends State<Tab1> {
                       sc: edit2,
                     ),
                     TextField2(
-                      title: "Ocop charity 4.0",
+                      title: "$appName charity 4.0",
                       showCursor: true,
                       sc: edit3,
                     ),
