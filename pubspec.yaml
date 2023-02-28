@@ -43,8 +43,6 @@ dependencies:
   flutter_launcher_icons: ^0.8.1
   webview_flutter: ^1.0.7
   email_validator: ^1.0.6
-  firebase_core:
-  firebase_messaging: ^7.0.3
   image_downloader: ^0.20.1
   youtube_player_flutter: ^8.0.0
   google_maps_flutter: ^1.1.1
@@ -83,6 +81,8 @@ dependencies:
   extended_image: ^2.0.0
   flutter_link_preview: ^1.5.6
   package_info_plus: ^0.6.4
+  firebase_core: 
+  firebase_messaging:
 
 dev_dependencies:
   flutter_test:

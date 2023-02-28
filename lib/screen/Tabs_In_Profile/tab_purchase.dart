@@ -401,12 +401,16 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
     String phoneFB = widget.prefs.getString(Dbkeys.phone);
     widget.prefs.remove(Dbkeys.phone);
 
-    await FirebaseFirestore.instance
-        .collection(DbPaths.collectionusers)
-        .doc(phoneFB)
-        .update({
-      Dbkeys.notificationTokens: [],
-    });
+    try{
+      await FirebaseFirestore.instance
+          .collection(DbPaths.collectionusers)
+          .doc(phoneFB)
+          .update({
+        Dbkeys.notificationTokens: [],
+      });
+    }catch(e){
+
+    }
 
     SharedPreferences prefss = await SharedPreferences.getInstance();
 

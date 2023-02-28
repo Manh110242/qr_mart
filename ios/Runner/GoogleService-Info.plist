@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>124762349797-0ajimgnka397dfi2untupft14dujofcf.apps.googleusercontent.com</string>
+	<string>124762349797-t56a88d5vmcp1bjnkk4d7msu6f8gi3qe.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.124762349797-0ajimgnka397dfi2untupft14dujofcf</string>
+	<string>com.googleusercontent.apps.124762349797-t56a88d5vmcp1bjnkk4d7msu6f8gi3qe</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD9PQxtXGSlkXXtk5hgfmouOuyV9jY4iLE</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>vn.com.ocop.mart</string>
+	<string>vn.com.qrmart</string>
 	<key>PROJECT_ID</key>
 	<string>qrmart-b2ba2</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:124762349797:ios:aac36831b05fbc0b5cf40c</string>
+	<string>1:124762349797:ios:27449c9817fa8d0b5cf40c</string>
 </dict>
 </plist>

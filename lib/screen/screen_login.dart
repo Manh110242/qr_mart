@@ -239,166 +239,171 @@ class _Login_Screen_State extends State<Login_Screen> {
   void _onLoginClick() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    LoadingDialog.showLoadingDialog(context, 'Loading...');
-    String username = _emailController.text;
-    String password = _passController.text;
-    final response = await checkLogin(username, password);
-    if (response['code'] == 200) {
-      final QuerySnapshot result = await FirebaseFirestore.instance
-          .collection(DbPaths.collectionusers)
-          .where(Dbkeys.email, isEqualTo: _emailController.text)
-          .get();
-
-      final List documents = result.docs;
-
-      if (documents.isEmpty) {
-        await FirebaseFirestore.instance
+    try {
+      LoadingDialog.showLoadingDialog(context, 'Loading...');
+      String username = _emailController.text;
+      String password = _passController.text;
+      final response = await checkLogin(username, password);
+      if (response['code'] == 200) {
+        final QuerySnapshot result = await FirebaseFirestore.instance
             .collection(DbPaths.collectionusers)
-            .doc(response['data']['phone'])
-            .set({
-          Dbkeys.publicKey: '',
-          Dbkeys.privateKey: '',
-          Dbkeys.countryCode: 'phoneCode',
-          Dbkeys.nickname: response['data']['username'],
-          Dbkeys.photoUrl: '',
-          Dbkeys.id: response['data']['id'],
-          Dbkeys.email: response['data']['email'],
-          Dbkeys.phone: response['data']['phone'],
-          Dbkeys.phoneRaw: response['data']['phone'],
-          Dbkeys.authenticationType: '',
-          Dbkeys.aboutMe: '',
-          //---Additional fields added for Admin app compatible----
-          Dbkeys.lastLogin: DateTime.now().millisecondsSinceEpoch,
-          Dbkeys.joinedOn: DateTime.now().millisecondsSinceEpoch,
-          Dbkeys.searchKey: response['data']['username']
-              .toString()
-              .trim()
-              .substring(0, 1)
-              .toUpperCase(),
-          Dbkeys.videoCallMade: 0,
-          Dbkeys.videoCallRecieved: 0,
-          Dbkeys.audioCallMade: 0,
-          Dbkeys.groupsCreated: 0,
-          Dbkeys.groupsJoinedList: [],
-          Dbkeys.audioCallRecieved: 0,
-          Dbkeys.mssgSent: 0,
-          Dbkeys.deviceDetails: mapDeviceInfo,
-          Dbkeys.currentDeviceID: deviceid,
-          // Dbkeys.phonenumbervariants: phoneNumberVariantsList(
-          //     countrycode: phoneCode, phonenumber: _phoneNo.text)
-        }, SetOptions(merge: true));
-        await FirebaseFirestore.instance
-            .collection(DbPaths.collectionnotifications)
-            .doc(DbPaths.adminnotifications)
-            .set({
-          Dbkeys.nOTIFICATIONxxaction: 'PUSH',
-          Dbkeys.nOTIFICATIONxxtitle: 'New User Joined',
-          Dbkeys.nOTIFICATIONxximageurl: null,
-          Dbkeys.nOTIFICATIONxxlastupdate: DateTime.now(),
-          'list': FieldValue.arrayUnion([
-            {
-              Dbkeys.docid: DateTime.now().millisecondsSinceEpoch.toString(),
-              // Dbkeys.nOTIFICATIONxxdesc: widget
-              //     .isaccountapprovalbyadminneeded ==
-              //     true
-              //     ? '${_name.text.trim()} has Joined $Appname. APPROVE the user account. You can view the user profile from All Users List.'
-              //     : '${_name.text.trim()} has Joined $Appname. You can view the user profile from All Users List.',
-              Dbkeys.nOTIFICATIONxxtitle: 'New User Joined',
-              Dbkeys.nOTIFICATIONxximageurl: null,
-              Dbkeys.nOTIFICATIONxxlastupdate: DateTime.now(),
-              Dbkeys.nOTIFICATIONxxauthor:
-                  response['data']['email'] + 'XXX' + 'userapp',
-            }
-          ])
-        });
+            .where(Dbkeys.email, isEqualTo: _emailController.text)
+            .get();
 
-        await prefs.setString(Dbkeys.email, response['data']['email']);
-        await prefs.setString(
-            Dbkeys.nickname, response['data']['username'].toString().trim());
-        await prefs.setString(Dbkeys.photoUrl, '');
-        await prefs.setString(
-            Dbkeys.phone, response['data']['phone'].toString().trim());
-        await prefs.setString(Dbkeys.countryCode, '');
-        String fcmToken = await FirebaseMessaging().getToken();
+        final List documents = result.docs;
 
-        await FirebaseFirestore.instance
-            .collection(DbPaths.collectionusers)
-            .doc(response['data']['phone'])
-            .set({
-          Dbkeys.notificationTokens: [fcmToken]
-        }, SetOptions(merge: true));
+        if (documents.isEmpty) {
+          await FirebaseFirestore.instance
+              .collection(DbPaths.collectionusers)
+              .doc(response['data']['phone'])
+              .set({
+            Dbkeys.publicKey: '',
+            Dbkeys.privateKey: '',
+            Dbkeys.countryCode: 'phoneCode',
+            Dbkeys.nickname: response['data']['username'],
+            Dbkeys.photoUrl: '',
+            Dbkeys.id: response['data']['id'],
+            Dbkeys.email: response['data']['email'],
+            Dbkeys.phone: response['data']['phone'],
+            Dbkeys.phoneRaw: response['data']['phone'],
+            Dbkeys.authenticationType: '',
+            Dbkeys.aboutMe: '',
+            //---Additional fields added for Admin app compatible----
+            Dbkeys.lastLogin: DateTime.now().millisecondsSinceEpoch,
+            Dbkeys.joinedOn: DateTime.now().millisecondsSinceEpoch,
+            Dbkeys.searchKey: response['data']['username']
+                .toString()
+                .trim()
+                .substring(0, 1)
+                .toUpperCase(),
+            Dbkeys.videoCallMade: 0,
+            Dbkeys.videoCallRecieved: 0,
+            Dbkeys.audioCallMade: 0,
+            Dbkeys.groupsCreated: 0,
+            Dbkeys.groupsJoinedList: [],
+            Dbkeys.audioCallRecieved: 0,
+            Dbkeys.mssgSent: 0,
+            Dbkeys.deviceDetails: mapDeviceInfo,
+            Dbkeys.currentDeviceID: deviceid,
+            // Dbkeys.phonenumbervariants: phoneNumberVariantsList(
+            //     countrycode: phoneCode, phonenumber: _phoneNo.text)
+          }, SetOptions(merge: true));
+          await FirebaseFirestore.instance
+              .collection(DbPaths.collectionnotifications)
+              .doc(DbPaths.adminnotifications)
+              .set({
+            Dbkeys.nOTIFICATIONxxaction: 'PUSH',
+            Dbkeys.nOTIFICATIONxxtitle: 'New User Joined',
+            Dbkeys.nOTIFICATIONxximageurl: null,
+            Dbkeys.nOTIFICATIONxxlastupdate: DateTime.now(),
+            'list': FieldValue.arrayUnion([
+              {
+                Dbkeys.docid: DateTime.now().millisecondsSinceEpoch.toString(),
+                // Dbkeys.nOTIFICATIONxxdesc: widget
+                //     .isaccountapprovalbyadminneeded ==
+                //     true
+                //     ? '${_name.text.trim()} has Joined $Appname. APPROVE the user account. You can view the user profile from All Users List.'
+                //     : '${_name.text.trim()} has Joined $Appname. You can view the user profile from All Users List.',
+                Dbkeys.nOTIFICATIONxxtitle: 'New User Joined',
+                Dbkeys.nOTIFICATIONxximageurl: null,
+                Dbkeys.nOTIFICATIONxxlastupdate: DateTime.now(),
+                Dbkeys.nOTIFICATIONxxauthor:
+                    response['data']['email'] + 'XXX' + 'userapp',
+              }
+            ])
+          });
 
-        await prefs.setInt(Dbkeys.id, response['data']['id']);
-        await prefs
-            .setString(Dbkeys.nickname, response['data']['username'].trim());
-        await prefs.setString(Dbkeys.photoUrl, '');
-        await prefs
-            .setString(Dbkeys.phone, response['data']['phone']);
-        await subscribeToNotification(response['data']['phone']);
+          await prefs.setString(Dbkeys.email, response['data']['email']);
+          await prefs.setString(
+              Dbkeys.nickname, response['data']['username'].toString().trim());
+          await prefs.setString(Dbkeys.photoUrl, '');
+          await prefs.setString(
+              Dbkeys.phone, response['data']['phone'].toString().trim());
+          await prefs.setString(Dbkeys.countryCode, '');
+          String fcmToken = await FirebaseMessaging().getToken();
+
+          await FirebaseFirestore.instance
+              .collection(DbPaths.collectionusers)
+              .doc(response['data']['phone'])
+              .set({
+            Dbkeys.notificationTokens: [fcmToken]
+          }, SetOptions(merge: true));
+
+          await prefs.setInt(Dbkeys.id, response['data']['id']);
+          await prefs.setString(
+              Dbkeys.nickname, response['data']['username'].trim());
+          await prefs.setString(Dbkeys.photoUrl, '');
+          await prefs.setString(Dbkeys.phone, response['data']['phone']);
+          await subscribeToNotification(response['data']['phone']);
+        } else {
+          await FirebaseFirestore.instance
+              .collection(DbPaths.collectionusers)
+              .doc(response['data']['phone'])
+              .update(
+                !documents[0].data().containsKey(Dbkeys.deviceDetails)
+                    ? {
+                        Dbkeys.lastLogin: DateTime.now().millisecondsSinceEpoch,
+                        Dbkeys.joinedOn:
+                            documents[0].data()[Dbkeys.lastSeen] != true
+                                ? documents[0].data()[Dbkeys.lastSeen]
+                                : DateTime.now().millisecondsSinceEpoch,
+                        Dbkeys.nickname:
+                            response['data']['username'].toString().trim(),
+                        Dbkeys.searchKey: response['data']['username']
+                            .toString()
+                            .trim()
+                            .substring(0, 1)
+                            .toUpperCase(),
+                        Dbkeys.videoCallMade: 0,
+                        Dbkeys.videoCallRecieved: 0,
+                        Dbkeys.audioCallMade: 0,
+                        Dbkeys.audioCallRecieved: 0,
+                        Dbkeys.mssgSent: 0,
+                      }
+                    : {
+                        Dbkeys.searchKey: response['data']['username']
+                            .toString()
+                            .trim()
+                            .substring(0, 1)
+                            .toUpperCase(),
+                        Dbkeys.nickname:
+                            response['data']['username'].toString().trim(),
+                        Dbkeys.lastLogin: DateTime.now().millisecondsSinceEpoch,
+                        Dbkeys.deviceDetails: mapDeviceInfo,
+                        Dbkeys.currentDeviceID: deviceid,
+                        // Dbkeys.phonenumbervariants: phoneNumberVariantsList(
+                        //     countrycode: documents[0][Dbkeys.countryCode],
+                        //     phonenumber: documents[0][Dbkeys.phoneRaw])
+                      },
+              );
+
+          await prefs.setString(Dbkeys.id, response['data']['id'].toString());
+          await prefs.setString(
+              Dbkeys.nickname, response['data']['username'].trim());
+          await prefs.setString(Dbkeys.photoUrl, '');
+          await prefs.setString(Dbkeys.phone, response['data']['phone']);
+          String fcmToken = await FirebaseMessaging().getToken();
+
+          await FirebaseFirestore.instance
+              .collection(DbPaths.collectionusers)
+              .doc(response['data']['phone'])
+              .set({
+            Dbkeys.notificationTokens: [fcmToken]
+          }, SetOptions(merge: true));
+
+          await subscribeToNotification(documents[0][Dbkeys.phone]);
+        }
+
+        LoadingDialog.hideLoadingDialog(context);
+        goHome();
       } else {
-        await FirebaseFirestore.instance
-            .collection(DbPaths.collectionusers)
-            .doc(response['data']['phone'])
-            .update(
-              !documents[0].data().containsKey(Dbkeys.deviceDetails)
-                  ? {
-                      Dbkeys.lastLogin: DateTime.now().millisecondsSinceEpoch,
-                      Dbkeys.joinedOn:
-                          documents[0].data()[Dbkeys.lastSeen] != true
-                              ? documents[0].data()[Dbkeys.lastSeen]
-                              : DateTime.now().millisecondsSinceEpoch,
-                      Dbkeys.nickname:
-                          response['data']['username'].toString().trim(),
-                      Dbkeys.searchKey: response['data']['username']
-                          .toString()
-                          .trim()
-                          .substring(0, 1)
-                          .toUpperCase(),
-                      Dbkeys.videoCallMade: 0,
-                      Dbkeys.videoCallRecieved: 0,
-                      Dbkeys.audioCallMade: 0,
-                      Dbkeys.audioCallRecieved: 0,
-                      Dbkeys.mssgSent: 0,
-                    }
-                  : {
-                      Dbkeys.searchKey: response['data']['username']
-                          .toString()
-                          .trim()
-                          .substring(0, 1)
-                          .toUpperCase(),
-                      Dbkeys.nickname:
-                          response['data']['username'].toString().trim(),
-                      Dbkeys.lastLogin: DateTime.now().millisecondsSinceEpoch,
-                      Dbkeys.deviceDetails: mapDeviceInfo,
-                      Dbkeys.currentDeviceID: deviceid,
-                      // Dbkeys.phonenumbervariants: phoneNumberVariantsList(
-                      //     countrycode: documents[0][Dbkeys.countryCode],
-                      //     phonenumber: documents[0][Dbkeys.phoneRaw])
-                    },
-            );
-
-        await prefs.setString(Dbkeys.id, response['data']['id'].toString());
-        await prefs
-            .setString(Dbkeys.nickname, response['data']['username'].trim());
-        await prefs.setString(Dbkeys.photoUrl, '');
-        await prefs.setString(Dbkeys.phone, response['data']['phone']);
-        String fcmToken = await FirebaseMessaging().getToken();
-
-        await FirebaseFirestore.instance
-            .collection(DbPaths.collectionusers)
-            .doc(response['data']['phone'])
-            .set({
-          Dbkeys.notificationTokens: [fcmToken]
-        }, SetOptions(merge: true));
-
-        await subscribeToNotification(documents[0][Dbkeys.phone]);
+        LoadingDialog.hideLoadingDialog(context);
+        MsgDialog.showMsgDialog(context, response['errors'], 'Đăng nhập');
       }
-
-      LoadingDialog.hideLoadingDialog(context);
-      goHome();
-    } else {
-      LoadingDialog.hideLoadingDialog(context);
-      MsgDialog.showMsgDialog(context, response['errors'], 'Đăng nhập');
+    } catch (e) {
+      print("++++++++");
+      print(e.toString());
+      print("++++++++");
     }
   }
 
