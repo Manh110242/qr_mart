@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gcaeco_app/configs/db_keys.dart';
 import 'package:gcaeco_app/configs/db_path.dart';
+import 'package:gcaeco_app/helper/Config.dart';
 import 'package:gcaeco_app/helper/const.dart';
 import 'package:gcaeco_app/main.dart';
 import 'package:gcaeco_app/screen/dialog/loading_dialog.dart';
@@ -118,7 +119,7 @@ class _Login_Screen_State extends State<Login_Screen> {
                     'Đăng nhập hệ sinh thái $appName',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff8f8b21),
+                        color: Config.green,
                         fontSize: 25),
                     textAlign: TextAlign.center,
                   ),
@@ -128,7 +129,7 @@ class _Login_Screen_State extends State<Login_Screen> {
                   child: Center(
                     child: Text(
                       'Đăng nhập $appName để mua, bán, theo dõi đơn hàng, nhận nhiều ưu đãi hấp dẫn.',
-                      style: TextStyle(color: Color(0xff8f8b21), fontSize: 15),
+                      style: TextStyle(color: Config.green, fontSize: 15),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -139,16 +140,15 @@ class _Login_Screen_State extends State<Login_Screen> {
                     controller: _emailController,
                     decoration: InputDecoration(
                       labelText: 'Nhập email hoặc số điện thoại',
-                      labelStyle: TextStyle(color: Color(0xff8f8b21)),
+                      labelStyle: TextStyle(color: Config.green),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xffc4a95a)),
+                        borderSide: BorderSide(color: Config.green),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color(0xff8f8b21), width: 3),
+                        borderSide: BorderSide(color: Config.green, width: 3),
                       ),
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffc4a95a))),
+                          borderSide: BorderSide(color: Config.green)),
                     ),
                   ),
                 ),
@@ -159,16 +159,15 @@ class _Login_Screen_State extends State<Login_Screen> {
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Nhập mật khẩu',
-                      labelStyle: TextStyle(color: Color(0xff8f8b21)),
+                      labelStyle: TextStyle(color: Config.green),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xffc4a95a)),
+                        borderSide: BorderSide(color: Config.green),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color(0xff8f8b21), width: 3),
+                        borderSide: BorderSide(color: Config.green, width: 3),
                       ),
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffc4a95a))),
+                          borderSide: BorderSide(color: Config.green)),
                     ),
                   ),
                 ),

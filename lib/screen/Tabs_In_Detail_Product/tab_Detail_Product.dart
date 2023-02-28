@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:gcaeco_app/helper/Config.dart';
 import 'package:gcaeco_app/helper/home_api.dart';
 import 'package:gcaeco_app/model/detail_product.dart';
+import 'package:gcaeco_app/screen/layouts/grid_view_custom.dart';
 import 'package:gcaeco_app/screen/layouts/products/item_product_grid.dart';
 
 // ignore: camel_case_types, must_be_immutable
@@ -172,7 +173,10 @@ class Tab_Detail_Product_State extends State<Tab_Detail_Product> {
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [ Color(0xff124CB9),Color(0xff112573),],
+                colors: [
+                  Color(0xff124CB9),
+                  Color(0xff112573),
+                ],
                 begin: const FractionalOffset(1, 0.4),
                 end: const FractionalOffset(0.3, 0.4),
                 stops: [0.0, 1.0],
@@ -183,7 +187,8 @@ class Tab_Detail_Product_State extends State<Tab_Detail_Product> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 15, left: 10, right: 10, bottom: 10),
+                  padding: const EdgeInsets.only(
+                      top: 15, left: 10, right: 10, bottom: 10),
                   child: Text(
                     'Sản phẩm khác của công ty'.toUpperCase(),
                     style: TextStyle(
@@ -197,31 +202,27 @@ class Tab_Detail_Product_State extends State<Tab_Detail_Product> {
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.hasData) {
                         canCallProductsInShop = false;
-                        return GridView.count(
-                            shrinkWrap: true,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 10.0),
-                            crossAxisSpacing: 10.0,
-                            mainAxisSpacing: 10.0,
-                            childAspectRatio: MediaQuery.of(context).size.width > MediaQuery.of(context).size.height ?  0.60 : 0.67,
-                            crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
-                            primary: false,
-                            children: List.generate(
-                              snapshot.data.length,
-                                  (index) => ItemProductGrid(snapshot.data[index]),
-                            ));
+                        return GridViewCustom(
+                          itemCount: snapshot.data.length,
+                          maxWight: 180,
+                          mainAxisExtent: 300,
+                          showFull: true,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.0, vertical: 10.0),
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          itemBuilder: (context, index) =>
+                              ItemProductGrid(snapshot.data[index]),
+                        );
                       }
                       return Center(
                         child: CircularProgressIndicator(),
                       );
                     }),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10,top: 20),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -236,28 +237,25 @@ class Tab_Detail_Product_State extends State<Tab_Detail_Product> {
                   ),
                 ),
                 FutureBuilder(
-                    future: canCallFavoriteProducts ? favoriteProductsFuture : null,
+                    future:
+                        canCallFavoriteProducts ? favoriteProductsFuture : null,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.hasData) {
                         canCallProductsInShop = false;
-                        return GridView.count(
-                            shrinkWrap: true,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 10.0),
-                            crossAxisSpacing: 10.0,
-                            mainAxisSpacing: 10.0,
-                            childAspectRatio: MediaQuery.of(context).size.width > MediaQuery.of(context).size.height ?  0.60 : 0.67,
-                            crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
-                            primary: false,
-                            children: List.generate(
-                              snapshot.data.length,
-                                  (index) => ItemProductGrid(snapshot.data[index]),
-                            ));
+                        return GridViewCustom(
+                          itemCount: snapshot.data.length,
+                          maxWight: 180,
+                          mainAxisExtent: 300,
+                          showFull: true,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.0, vertical: 10.0),
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          itemBuilder: (context, index) =>
+                              ItemProductGrid(snapshot.data[index]),
+                        );
                       }
                       return Center(
                         child: CircularProgressIndicator(),

@@ -19,6 +19,7 @@ import 'package:gcaeco_app/helper/toast.dart';
 import 'package:gcaeco_app/screen/category_screen.dart';
 import 'package:gcaeco_app/screen/dialog/msg_dialog.dart';
 import 'package:gcaeco_app/screen/layouts/CountdownTimer.dart';
+import 'package:gcaeco_app/screen/layouts/grid_view_custom.dart';
 import 'package:gcaeco_app/screen/layouts/products/cart_header.dart';
 import 'package:gcaeco_app/screen/layouts/products/item_category.dart';
 import 'package:gcaeco_app/screen/layouts/products/item_product.dart';
@@ -72,7 +73,7 @@ class HomePageState extends State<HomePage> {
     banner_bloc = new BannerBloc();
     banner_bloc.getBannerPopup('12', '1', '').then((value) async {
       //print(value);
-      if(value['data'] != null){
+      if (value['data'] != null) {
         if (value['data'].length > 0) {
           Future.delayed(Duration(seconds: 1))
               .then((delay) => _showAds(context, value));
@@ -684,47 +685,21 @@ class HomePageState extends State<HomePage> {
                                         ],
                                       ),
                                     ),
-                                    GridView.count(
-                                        shrinkWrap: true,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10.0, vertical: 10.0),
-                                        crossAxisSpacing: 10.0,
-                                        mainAxisSpacing: 10.0,
-                                        childAspectRatio: MediaQuery.of(context)
-                                                    .size
-                                                    .width >
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .height
-                                            ? 0.60
-                                            : 0.65,
-                                        crossAxisCount:
-                                            ((MediaQuery.of(context)
-                                                                .size
-                                                                .width /
-                                                            170) -
-                                                        (MediaQuery.of(context)
-                                                                    .size
-                                                                    .width /
-                                                                170)
-                                                            .floor()) >
-                                                    0.8
-                                                ? (MediaQuery.of(context)
-                                                            .size
-                                                            .width /
-                                                        170)
-                                                    .round()
-                                                : (MediaQuery.of(context)
-                                                            .size
-                                                            .width /
-                                                        170)
-                                                    .floor(),
-                                        primary: false,
-                                        children: List.generate(
+                                    GridViewCustom(
+                                      itemCount:
                                           snapshot.data[index].products.length,
-                                          (index1) => ItemProductGrid(snapshot
+                                      maxWight: 180,
+                                      mainAxisExtent: 300,
+                                      showFull: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 10,
+                                      itemBuilder: (context, index1) =>
+                                          ItemProductGrid(snapshot
                                               .data[index].products[index1]),
-                                        )),
+                                    ),
                                     banner_count > index
                                         ? InkWell(
                                             onTap: () {

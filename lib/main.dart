@@ -24,6 +24,7 @@ import 'provider/firebase_broadcast_service.dart';
 import 'provider/firebase_group_service.dart';
 import 'provider/firestore_data_provider_call_history.dart';
 import 'firebase_options.dart';
+
 Fetch_Data fetch_data_token = new Fetch_Data("/app/home/start", {});
 
 bool showCheckVersion = true;
@@ -84,7 +85,7 @@ void main() async {
           debugShowCheckedModeBanner: false,
           home: Page404(
             err:
-            "Lấy thông tin Token không thành công. Vui lòng xóa dữ liệu ứng dụng và khởi động lại.",
+                "Lấy thông tin Token không thành công. Vui lòng xóa dữ liệu ứng dụng và khởi động lại.",
           ),
         ),
       ),
@@ -152,6 +153,9 @@ class _AppState extends State<App> {
             );
           }
           return MaterialApp(
+            builder: (context, child) => MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+                child: child),
             home: Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),

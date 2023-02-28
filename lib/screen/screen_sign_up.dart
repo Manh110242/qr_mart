@@ -16,6 +16,7 @@ import 'package:gcaeco_app/screen/dialog/loading_dialog.dart';
 import 'package:gcaeco_app/screen/dialog/msg_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'screen_login.dart';
+import 'package:gcaeco_app/helper/Config.dart';
 
 // ignore: camel_case_types
 class Sign_Up_Screen extends StatefulWidget {
@@ -77,7 +78,7 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                         'Đăng ký tài khoản $appName',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff8f8b21),
+                            color: Config.green,
                             fontSize: 25),
                         textAlign: TextAlign.center,
                       ),
@@ -106,16 +107,15 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                       decoration: InputDecoration(
                         errorText: null,
                         labelText: "Họ và tên",
-                        labelStyle: TextStyle(color: Color(0xff8f8b21)),
+                        labelStyle: TextStyle(color: Config.green),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffc4a95a)),
+                          borderSide: BorderSide(color: Config.green),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Color(0xff8f8b21), width: 3),
+                          borderSide: BorderSide(color: Config.green, width: 3),
                         ),
                         border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffc4a95a))),
+                            borderSide: BorderSide(color: Config.green)),
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
@@ -140,16 +140,15 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                       decoration: InputDecoration(
                         errorText: null,
                         labelText: "Số điện thoại",
-                        labelStyle: TextStyle(color: Color(0xff8f8b21)),
+                        labelStyle: TextStyle(color: Config.green),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffc4a95a)),
+                          borderSide: BorderSide(color: Config.green),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Color(0xff8f8b21), width: 3),
+                          borderSide: BorderSide(color: Config.green, width: 3),
                         ),
                         border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffc4a95a))),
+                            borderSide: BorderSide(color: Config.green)),
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
@@ -170,16 +169,15 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                       decoration: InputDecoration(
                         errorText: null,
                         labelText: "Email",
-                        labelStyle: TextStyle(color: Color(0xff8f8b21)),
+                        labelStyle: TextStyle(color: Config.green),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xffc4a95a)),
+                          borderSide: BorderSide(color: Config.green),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Color(0xff8f8b21), width: 3),
+                          borderSide: BorderSide(color: Config.green, width: 3),
                         ),
                         border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffc4a95a))),
+                            borderSide: BorderSide(color: Config.green)),
                       ),
                       validator: (value) => EmailValidator.validate(value)
                           ? null
@@ -198,16 +196,16 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                   //     decoration: InputDecoration(
                   //       errorText: null,
                   //       labelText: "CMT/CCCD",
-                  //       labelStyle: TextStyle(color: Color(0xff8f8b21)),
+                  //       labelStyle: TextStyle(color: Config.green),
                   //       enabledBorder: OutlineInputBorder(
-                  //         borderSide: BorderSide(color: Color(0xffc4a95a)),
+                  //         borderSide: BorderSide(color: Config.green),
                   //       ),
                   //       focusedBorder: OutlineInputBorder(
                   //         borderSide:
-                  //             BorderSide(color: Color(0xff8f8b21), width: 3),
+                  //             BorderSide(color: Config.green, width: 3),
                   //       ),
                   //       border: OutlineInputBorder(
-                  //           borderSide: BorderSide(color: Color(0xffc4a95a))),
+                  //           borderSide: BorderSide(color: Config.green)),
                   //     ),
                   //   ),
                   // ),
@@ -226,17 +224,16 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                           decoration: InputDecoration(
                             labelText: "Nhập mật khẩu",
                             errorText: null,
-                            labelStyle: TextStyle(color: Color(0xff8f8b21)),
+                            labelStyle: TextStyle(color: Config.green),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -263,17 +260,16 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                           decoration: InputDecoration(
                             errorText: null,
                             labelText: "Nhập lại mật khẩu",
-                            labelStyle: TextStyle(color: Color(0xff8f8b21)),
+                            labelStyle: TextStyle(color: Config.green),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty)
@@ -300,17 +296,16 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                           decoration: InputDecoration(
                             errorText: null,
                             labelText: "ID giới thiệu",
-                            labelStyle: TextStyle(color: Color(0xff8f8b21)),
+                            labelStyle: TextStyle(color: Config.green),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                         ),
                       ],
@@ -322,7 +317,7 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                         const EdgeInsets.only(top: 15, left: 10, right: 10),
                     child: Text(
                       'Ví dụ: ${Const().domain}/dang-ky.html?user_id=523 thì ID giới thiệu sẽ là 523',
-                      style: TextStyle(color: Color(0xff8f8b21)),
+                      style: TextStyle(color: Config.green),
                     ),
                   ),
                   // Đăng ký
@@ -364,7 +359,7 @@ class _Sign_Up_Screen_State extends State<Sign_Up_Screen> {
                             'tại đây',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xffdbbf6d)),
+                                color: Config.green),
                           ),
                         )
                       ],

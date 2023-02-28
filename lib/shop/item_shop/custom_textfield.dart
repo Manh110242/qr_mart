@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:gcaeco_app/helper/Config.dart';
 class CustomTextField extends StatelessWidget {
   String title;
   TextEditingController sc;
@@ -8,7 +8,13 @@ class CustomTextField extends StatelessWidget {
   bool showCursor;
   bool readOnly;
 
-  CustomTextField({this.title,this.error,this.sc, this.onTap, this.showCursor,this.readOnly});
+  CustomTextField(
+      {this.title,
+      this.error,
+      this.sc,
+      this.onTap,
+      this.showCursor,
+      this.readOnly});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +25,7 @@ class CustomTextField extends StatelessWidget {
         children: [
           Text(
             title,
-            style:
-            TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+            style: TextStyle(color: Config.green, fontSize: 16),
           ),
           SizedBox(
             height: 5,
@@ -33,15 +38,13 @@ class CustomTextField extends StatelessWidget {
             decoration: InputDecoration(
               errorText: null,
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xffc4a95a)),
+                borderSide: BorderSide(color: Config.green),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: Color(0xff8f8b21), width: 3),
+                borderSide: BorderSide(color: Config.green, width: 3),
               ),
               border: OutlineInputBorder(
-                  borderSide:
-                  BorderSide(color: Color(0xffc4a95a))),
+                  borderSide: BorderSide(color: Config.green)),
             ),
             onTap: onTap,
             validator: (value) {

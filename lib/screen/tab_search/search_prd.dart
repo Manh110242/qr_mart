@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gcaeco_app/bloc/product_bloc.dart';
 import 'package:gcaeco_app/screen/dialog/loading_dialog.dart';
+import 'package:gcaeco_app/screen/layouts/grid_view_custom.dart';
 import 'package:gcaeco_app/screen/layouts/products/item_product_grid.dart';
 
 class SearchPrd extends StatefulWidget {
@@ -19,11 +20,14 @@ class _SearchPrdState extends State<SearchPrd> {
     // TODO: implement initState
     super.initState();
     bloc.getProduct(_textController.text, page, false);
-    _scrollController.addListener(() {_scrollListener();});
+    _scrollController.addListener(() {
+      _scrollListener();
+    });
   }
+
   _scrollListener() async {
     if (_scrollController.offset >=
-        _scrollController.position.maxScrollExtent &&
+            _scrollController.position.maxScrollExtent &&
         !_scrollController.position.outOfRange) {
       page++;
       isLoading = true;
@@ -33,6 +37,7 @@ class _SearchPrdState extends State<SearchPrd> {
       setState(() {});
     }
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -63,8 +68,7 @@ class _SearchPrdState extends State<SearchPrd> {
                   contentPadding: EdgeInsets.all(11),
                   border: OutlineInputBorder(
                     borderSide: BorderSide(width: 1, color: Colors.grey),
-                  )
-              ),
+                  )),
             ),
           ),
         ),
@@ -75,25 +79,21 @@ class _SearchPrdState extends State<SearchPrd> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data.length > 0) {
-              return GridView.count(
+              return GridViewCustom(
+                itemCount: snapshot.data.length,
+                maxWight: 180,
+                mainAxisExtent: 300,
+                showFull: true,
                 padding: EdgeInsets.all(10),
                 controller: _scrollController,
-                crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
-                childAspectRatio: MediaQuery.of(context).size.width > MediaQuery.of(context).size.height ?  0.60 : 0.67,
-                mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                children: List.generate(
-                    snapshot.data.length,
-                        (index) => (index == snapshot.data.length - 1 && isLoading)
+                mainAxisSpacing: 10,
+                itemBuilder: (context, index) =>
+                    (index == snapshot.data.length - 1 && isLoading)
                         ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                        : ItemProductGrid(snapshot.data[index])),
+                            child: CircularProgressIndicator(),
+                          )
+                        : ItemProductGrid(snapshot.data[index]),
               );
             } else {
               return Padding(
@@ -110,5 +110,4 @@ class _SearchPrdState extends State<SearchPrd> {
       ),
     );
   }
-
 }

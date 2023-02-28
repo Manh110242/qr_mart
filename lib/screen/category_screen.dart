@@ -7,6 +7,8 @@ import 'package:gcaeco_app/screen/layouts/products/item_category.dart';
 import 'package:gcaeco_app/screen/layouts/products/item_product_grid.dart';
 import 'package:gcaeco_app/screen/screen_search.dart';
 
+import 'layouts/grid_view_custom.dart';
+
 // ignore: camel_case_types, must_be_immutable
 class Category_screen extends StatefulWidget {
   // ignore: non_constant_identifier_names
@@ -103,7 +105,7 @@ class _Category_screen_State extends State<Category_screen> {
                         category_screen.banner != ''
                             ? Image.network(
                                 category_screen.banner,
-                                  width: size.width,
+                                width: size.width,
                                 fit: BoxFit.contain,
                               )
                             : Text(
@@ -114,56 +116,51 @@ class _Category_screen_State extends State<Category_screen> {
                       ],
                     ),
                   ),
-                  snapshot.data.length > 0
-                      ? SliverPadding(
-                          padding: EdgeInsets.all(10),
-                          sliver: SliverGrid(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisSpacing: 10.0,
-                              mainAxisSpacing: 10.0,
-                              childAspectRatio: MediaQuery.of(context).size.width > MediaQuery.of(context).size.height ?  0.60 : 0.67,
-                              crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
-                            ),
-                            delegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int index) {
-                                if (index == snapshot.data.length - 1 &&
-                                    snapshot.data.length %
-                                            category_screen.limit ==
-                                        0) {
-                                  return _buildProgressIndicator();
-                                } else {
-                                  return ItemProductGrid(snapshot.data[index]);
-                                }
-                              },
-                              childCount: snapshot.data.length,
-                            ),
-                          ),
-                        )
-                      : SliverToBoxAdapter(
-                          child: Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Center(
-                              child: Text(
-                                'Không tìm thấy sản phẩm thuộc danh mục',
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                          ),
-                        )
+                  SliverToBoxAdapter(
+                    child: BuildProduct(snapshot),
+                  ),
                 ],
               )
             : Align(
                 alignment: Alignment.center,
                 child: CircularProgressIndicator());
+      },
+    );
+  }
+
+  BuildProduct(AsyncSnapshot<dynamic> snapshot) {
+    if (!snapshot.hasData) {
+      return Align(
+          alignment: Alignment.center, child: CircularProgressIndicator());
+    } else if (snapshot.data.length == 0) {
+      return Container(
+        padding: EdgeInsets.only(top: 10),
+        child: Center(
+          child: Text(
+            'Không tìm thấy sản phẩm thuộc danh mục',
+            style: TextStyle(
+                color: Colors.red, fontSize: 18, fontWeight: FontWeight.w500),
+          ),
+        ),
+      );
+    }
+    return GridViewCustom(
+      itemCount: snapshot.data.length,
+      maxWight: 180,
+      mainAxisExtent: 300,
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      controller: _scrollController,
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      itemBuilder: (context, index) {
+        if (index == snapshot.data.length - 1 &&
+            snapshot.data.length % category_screen.limit == 0) {
+          return _buildProgressIndicator();
+        } else {
+          return ItemProductGrid(snapshot.data[index]);
+        }
       },
     );
   }
@@ -177,21 +174,21 @@ class _Category_screen_State extends State<Category_screen> {
               double width = MediaQuery.of(context).size.width;
               bool test = true;
               int count = 1;
-              if(width <= 480 ){
+              if (width <= 480) {
                 count = 4;
-                if(snap.data.length/4 >= 2){
+                if (snap.data.length / 4 >= 2) {
                   test = false;
                   count = 2;
                 }
-              }else  if(width <= 720 ){
+              } else if (width <= 720) {
                 count = 7;
-                if(snap.data.length/7>= 2){
+                if (snap.data.length / 7 >= 2) {
                   test = false;
                   count = 2;
                 }
-              }else{
+              } else {
                 count = 10;
-                if(snap.data.length/10 >= 2){
+                if (snap.data.length / 10 >= 2) {
                   test = false;
                   count = 2;
                 }
@@ -219,8 +216,11 @@ class _Category_screen_State extends State<Category_screen> {
                           child: SizedBox(
                             height: 175,
                             child: GridView.count(
-                              physics: test ? NeverScrollableScrollPhysics() : BouncingScrollPhysics() ,
-                              scrollDirection: test ? Axis.vertical: Axis.horizontal,
+                              physics: test
+                                  ? NeverScrollableScrollPhysics()
+                                  : BouncingScrollPhysics(),
+                              scrollDirection:
+                                  test ? Axis.vertical : Axis.horizontal,
                               shrinkWrap: true,
                               childAspectRatio: 1,
                               crossAxisCount: count,

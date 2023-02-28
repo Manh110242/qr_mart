@@ -4,6 +4,7 @@ import 'package:gcaeco_app/helper/Config.dart';
 import 'package:gcaeco_app/model/flash_sale.dart';
 
 import 'layouts/CountdownTimer.dart';
+import 'layouts/grid_view_custom.dart';
 import 'layouts/products/item_product_grid.dart';
 
 class ScreenFlashSale extends StatefulWidget {
@@ -32,7 +33,7 @@ class _ScreenFlashSaleState extends State<ScreenFlashSale> {
   }
 
   loading() async {
-    if(controller.position.pixels == controller.position.maxScrollExtent){
+    if (controller.position.pixels == controller.position.maxScrollExtent) {
       setState(() {
         load = true;
       });
@@ -66,34 +67,44 @@ class _ScreenFlashSaleState extends State<ScreenFlashSale> {
             controller: controller,
             child: Column(
               children: [
-                SizedBox(height:  10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Image.asset("assets/images/flas.png"),
-                SizedBox(height:  10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.access_time,color: Color(0xffaeb127), size: 20,),
-                    SizedBox(width:  5,),
-                    Text("Kết thúc sau : ".toUpperCase(), style: TextStyle(fontSize: 15, color: Color(0xffaeb127)),),
+                    Icon(
+                      Icons.access_time,
+                      color: Color(0xffaeb127),
+                      size: 20,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Kết thúc sau : ".toUpperCase(),
+                      style: TextStyle(fontSize: 15, color: Color(0xffaeb127)),
+                    ),
                     CountdownTimerItem(widget.item.enddate, 17),
                   ],
                 ),
-                GridView.count(
-                  crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
+                GridViewCustom(
+                  itemCount: snap.data.length,
+                  maxWight: 180,
+                  mainAxisExtent: 300,
+                  showFull: true,
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   padding: EdgeInsets.all(10),
-                  childAspectRatio: 0.64,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
-                  children: List.generate(
-                    snap.data.length,
-                        (index) => ItemProductGrid(snap.data[index], check: false,),
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  itemBuilder: (context, index) => ItemProductGrid(
+                    snap.data[index],
+                    check: false,
                   ),
                 ),
                 Container(

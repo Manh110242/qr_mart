@@ -19,6 +19,8 @@ import 'package:image_downloader/image_downloader.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'layouts/grid_view_custom.dart';
+
 // ignore: camel_case_types, must_be_immutable
 class ShopDetail extends StatefulWidget {
   // ignore: non_constant_identifier_names
@@ -88,7 +90,7 @@ class _ShopDetailState extends State<ShopDetail>
     return ScopedModel<DataModel>(
       model: getModel(),
       child: ScopedModelDescendant<DataModel>(
-        builder: (context, child, _model){
+        builder: (context, child, _model) {
           _cachedModel = _model;
 
           return FutureBuilder(
@@ -111,10 +113,11 @@ class _ShopDetailState extends State<ShopDetail>
                       : 0;
                   //latlng
 
-                  double lat ;
-                  double long ;
-                  var latlng ;
-                  if(snapshot.data['data']['latlng'] != "" && snapshot.data['data']['latlng'] != null){
+                  double lat;
+                  double long;
+                  var latlng;
+                  if (snapshot.data['data']['latlng'] != "" &&
+                      snapshot.data['data']['latlng'] != null) {
                     latlng = snapshot.data['data']['latlng'].split(",");
                     lat = double.parse(latlng[0]);
                     long = double.parse(latlng[1]);
@@ -146,12 +149,11 @@ class _ShopDetailState extends State<ShopDetail>
                         ),
                         onPressed: () async {
                           SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                          if(widget.currentUserNo == null){
+                              await SharedPreferences.getInstance();
+                          if (widget.currentUserNo == null) {
                             HelperFunctions.toast(
                                 'Vui lòng đăng nhập để tiếp tục');
-                          }else  if (widget.shopNo ==
-                              widget.currentUserNo) {
+                          } else if (widget.shopNo == widget.currentUserNo) {
                             HelperFunctions.toast(
                                 'Bạn không thể tự chat với chính mình');
                           } else if (widget.currentUserNo == null) {
@@ -174,10 +176,10 @@ class _ShopDetailState extends State<ShopDetail>
                                       builder: (context) => ChatRoom(
                                         prefs: prefs,
                                         unread: 0,
-                                        currentUserNo: prefs.getString("phone") ?? "",
+                                        currentUserNo:
+                                            prefs.getString("phone") ?? "",
                                         model: _cachedModel,
-                                        peerNo:
-                                        widget.shopNo,
+                                        peerNo: widget.shopNo,
                                       ),
                                     ),
                                   );
@@ -202,8 +204,8 @@ class _ShopDetailState extends State<ShopDetail>
                               snap: true,
                               flexibleSpace: FlexibleSpaceBar(
                                   background: Container(
-                                    color: Config().colorMain,
-                                  )),
+                                color: Config().colorMain,
+                              )),
                               bottom: TabBar(
                                 isScrollable: true,
                                 controller: _tabController,
@@ -214,36 +216,40 @@ class _ShopDetailState extends State<ShopDetail>
                                     child: Text(
                                       'Sản phẩm',
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold, fontSize: 18),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
                                     ),
                                   ),
                                   Tab(
                                     child: Text(
                                       'Giới thiệu',
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold, fontSize: 18),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
                                     ),
                                   ),
                                   Tab(
                                     child: Text(
                                       'Liên hệ',
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold, fontSize: 18),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
                                     ),
                                   ),
                                   Tab(
                                     child: Text(
                                       'QR Code',
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold, fontSize: 18),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                             SliverToBoxAdapter(
-                                child: header(avatar_url, banner_url, shop_name, rating,
-                                    rate_count)),
+                                child: header(avatar_url, banner_url, shop_name,
+                                    rating, rate_count)),
                           ];
                         },
                         body: Container(
@@ -252,7 +258,8 @@ class _ShopDetailState extends State<ShopDetail>
                             children: <Widget>[
                               listProduct(),
                               Container(
-                                padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                                padding: EdgeInsets.only(
+                                    left: 10, right: 10, top: 10),
                                 child: Column(
                                   children: [
                                     Text(
@@ -268,7 +275,8 @@ class _ShopDetailState extends State<ShopDetail>
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.only(left: 10, top: 10, right: 10),
+                                padding: EdgeInsets.only(
+                                    left: 10, top: 10, right: 10),
                                 child: Column(
                                   children: [
                                     Padding(
@@ -285,32 +293,49 @@ class _ShopDetailState extends State<ShopDetail>
                                       'Địa chỉ: ' +
                                           snapshot.data['data']['address'] +
                                           ', ' +
-                                          snapshot.data['data']['district_name'] +
+                                          snapshot.data['data']
+                                              ['district_name'] +
                                           ', ' +
-                                          snapshot.data['data']['province_name'],
+                                          snapshot.data['data']
+                                              ['province_name'],
                                       style: TextStyle(
                                           fontSize: 18,
                                           color: Colors.black54,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     Expanded(
-                                      child: snapshot.data['data']['latlng'] != "" && snapshot.data['data']['latlng'] != null?Container(
-                                        width: double.infinity,
-                                        child: GoogleMap(
-                                            mapType: MapType.normal,
-                                            initialCameraPosition: CameraPosition(
-                                                target: LatLng(lat, long),
-                                                zoom: 17
-                                            ),
-                                            markers: {Marker(
-                                              markerId: MarkerId(shop_name),
-                                              position: LatLng(lat, long),
-                                              infoWindow: InfoWindow(title: shop_name),
-                                              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-                                            )}
-                                        ),
-                                      ): Container(),
+                                      child: snapshot.data['data']['latlng'] !=
+                                                  "" &&
+                                              snapshot.data['data']['latlng'] !=
+                                                  null
+                                          ? Container(
+                                              width: double.infinity,
+                                              child: GoogleMap(
+                                                  mapType: MapType.normal,
+                                                  initialCameraPosition:
+                                                      CameraPosition(
+                                                          target:
+                                                              LatLng(lat, long),
+                                                          zoom: 17),
+                                                  markers: {
+                                                    Marker(
+                                                      markerId:
+                                                          MarkerId(shop_name),
+                                                      position:
+                                                          LatLng(lat, long),
+                                                      infoWindow: InfoWindow(
+                                                          title: shop_name),
+                                                      icon: BitmapDescriptor
+                                                          .defaultMarkerWithHue(
+                                                              BitmapDescriptor
+                                                                  .hueRed),
+                                                    )
+                                                  }),
+                                            )
+                                          : Container(),
                                     ),
                                   ],
                                 ),
@@ -318,12 +343,22 @@ class _ShopDetailState extends State<ShopDetail>
                               Container(
                                 margin: EdgeInsets.only(top: 15),
                                 child: GridView.count(
-                                    crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
+                                    crossAxisCount: ((MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    170) -
+                                                (MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        170)
+                                                    .floor()) >
+                                            0.8
+                                        ? (MediaQuery.of(context).size.width /
+                                                170)
+                                            .round()
+                                        : (MediaQuery.of(context).size.width /
+                                                170)
+                                            .floor(),
                                     childAspectRatio: 0.67,
                                     padding: const EdgeInsets.all(4.0),
                                     mainAxisSpacing: 4.0,
@@ -419,57 +454,40 @@ class _ShopDetailState extends State<ShopDetail>
   }
 
   Widget listProduct() {
-
     return StreamBuilder(
         stream: shopBloc.allProducts,
         builder: (context, AsyncSnapshot<dynamic> snapshot) {
-          return snapshot.hasData
-              ? CustomScrollView(
-                  controller: _scrollController,
-                  slivers: <Widget>[
-                    snapshot.data.length > 0
-                        ? SliverPadding(
-                            padding: EdgeInsets.all(10),
-                            sliver: SliverGrid(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisSpacing: 10.0,
-                                mainAxisSpacing: 10.0,
-                                childAspectRatio: 0.67,
-                                crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
-                              ),
-                              delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                                  return ItemProductGrid(snapshot.data[index]);
-                                },
-                                childCount: snapshot.data.length,
-                              ),
-                            ),
-                          )
-                        : SliverToBoxAdapter(
-                            child: Container(
-                              padding: EdgeInsets.only(top: 10),
-                              child: Center(
-                                child: Text(
-                                  'Không tìm thấy sản phẩm',
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                            ),
-                          )
-                  ],
-                )
-              : Align(
-                  alignment: Alignment.center,
-                  child: CircularProgressIndicator());
+          if (!snapshot.hasData) {
+            return Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator());
+          } else if (snapshot.data.length == 0) {
+            return Container(
+              padding: EdgeInsets.only(top: 10),
+              child: Center(
+                child: Text(
+                  'Không tìm thấy sản phẩm',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            );
+          }
+
+          return GridViewCustom(
+            itemCount: snapshot.data.length,
+            maxWight: 180,
+            mainAxisExtent: 300,
+            showFull: true,
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+            shrinkWrap: true,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            itemBuilder: (context, index) =>
+                ItemProductGrid(snapshot.data[index]),
+          );
         });
   }
 

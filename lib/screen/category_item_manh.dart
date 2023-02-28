@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gcaeco_app/bloc/bloc_manh.dart';
 import 'package:gcaeco_app/helper/Config.dart';
+import 'layouts/grid_view_custom.dart';
 import 'layouts/products/item_product_grid.dart';
 
 class CategoryManh extends StatefulWidget {
@@ -47,26 +48,35 @@ class _CategoryManhState extends State<CategoryManh> {
       body: StreamBuilder(
         stream: bloc.allAddress,
         builder: (context, AsyncSnapshot<dynamic> snapshot) {
-          return snapshot.hasData
-              ? GridView.count(
-                  controller: _sc,
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
-                  childAspectRatio: MediaQuery.of(context).size.width > MediaQuery.of(context).size.height ?  0.60 : 0.67,
-                  crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
-                  primary: false,
-                  children: List.generate(snapshot.data.length,
-                      (index) => ItemProductGrid(snapshot.data[index])))
-              : Align(
-                  alignment: Alignment.center,
-                  child: CircularProgressIndicator());
+          if (!snapshot.hasData) {
+            return Align(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator());
+          } else if (snapshot.data.length == 0) {
+            return Container(
+              padding: EdgeInsets.only(top: 10),
+              child: Center(
+                child: Text(
+                  'Không tìm thấy sản phẩm',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            );
+          }
+          return GridViewCustom(
+            itemCount: snapshot.data.length,
+            maxWight: 180,
+            mainAxisExtent: 300,
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+            shrinkWrap: true,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            itemBuilder: (context, index) =>
+                ItemProductGrid(snapshot.data[index]),
+          );
         },
       ),
     );

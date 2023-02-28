@@ -34,19 +34,23 @@ class _ConfirmShopState extends State<ConfirmShop> {
   bool addimg = true;
   bool addimg1 = true;
   List iddel = [];
-  update(List file1,List dels1, cmt1, number_auth1, number_paper_auth1, date_auth1,address_auth1) async {
-    var res = await _bloc.shopAuth(file1, dels1, cmt1, number_auth1, number_paper_auth1, date_auth1,address_auth1);
-    if(res != null){
-      if(res['code'] == 1){
-        showToast("Lưu thông tin thành công", context, Colors.grey, Icons.check);
-      }else{
+  update(List file1, List dels1, cmt1, number_auth1, number_paper_auth1,
+      date_auth1, address_auth1) async {
+    var res = await _bloc.shopAuth(file1, dels1, cmt1, number_auth1,
+        number_paper_auth1, date_auth1, address_auth1);
+    if (res != null) {
+      if (res['code'] == 1) {
+        showToast(
+            "Lưu thông tin thành công", context, Colors.grey, Icons.check);
+      } else {
         showToast("Lỗi dữ liệu", context, Colors.grey, Icons.error_outline);
       }
-    }else{
+    } else {
       showToast("Lỗi kết nối", context, Colors.grey, Icons.error_outline);
     }
     setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,35 +60,46 @@ class _ConfirmShopState extends State<ConfirmShop> {
         title: Text("Xác thực doanh nghiệp"),
         actions: [
           IconButton(
-              icon: Icon(
-                Icons.check,
-                color: Colors.white,
-                size: 30,
-              ),
-              onPressed: () async{
-                 var res = await _bloc.shopAuth(imgs,iddel,cmt.text, number_auth.text, number_paper_auth.text, date_auth.text,address_auth.text);
-                 if(res != null){
-                   if(res['code'] == 1){
-                     showToast("Lưu thông tin thành công", context, Colors.grey, Icons.check);
-                   }else{
-                     showToast("Lỗi dữ liệu", context, Colors.grey, Icons.error_outline);
-                   }
-                 }else{
-                   showToast("Lỗi kết nối", context, Colors.grey, Icons.error_outline);
-                 }
-                 },),
+            icon: Icon(
+              Icons.check,
+              color: Colors.white,
+              size: 30,
+            ),
+            onPressed: () async {
+              var res = await _bloc.shopAuth(
+                  imgs,
+                  iddel,
+                  cmt.text,
+                  number_auth.text,
+                  number_paper_auth.text,
+                  date_auth.text,
+                  address_auth.text);
+              if (res != null) {
+                if (res['code'] == 1) {
+                  showToast("Lưu thông tin thành công", context, Colors.grey,
+                      Icons.check);
+                } else {
+                  showToast(
+                      "Lỗi dữ liệu", context, Colors.grey, Icons.error_outline);
+                }
+              } else {
+                showToast(
+                    "Lỗi kết nối", context, Colors.grey, Icons.error_outline);
+              }
+            },
+          ),
         ],
       ),
       body: FutureBuilder(
         future: _bloc.getShopAuth(),
-        builder: (_, sanpshot){
-          if(sanpshot.hasData){
+        builder: (_, sanpshot) {
+          if (sanpshot.hasData) {
             cmt.text = sanpshot.data['data']['cmt'];
             number_auth.text = sanpshot.data['data']['number_auth'];
             number_paper_auth.text = sanpshot.data['data']['number_paper_auth'];
             address_auth.text = sanpshot.data['data']['address_auth'];
             date_auth.text = sanpshot.data['data']['date_auth'];
-            if(addimg1){
+            if (addimg1) {
               images = [];
               images.addAll(sanpshot.data['images']);
             }
@@ -98,7 +113,7 @@ class _ConfirmShopState extends State<ConfirmShop> {
                         'Đăng ảnh giấy tờ chứng thực',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff8f8b21),
+                            color: Config.green,
                             fontSize: 25),
                         textAlign: TextAlign.center,
                       ),
@@ -158,8 +173,8 @@ class _ConfirmShopState extends State<ConfirmShop> {
                           child: Text(
                             "Số CMT",
                             overflow: TextOverflow.ellipsis,
-                            style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                         ),
                         Flexible(
@@ -183,7 +198,8 @@ class _ConfirmShopState extends State<ConfirmShop> {
                                   color: Colors.transparent,
                                   child: InkWell(
                                       onTap: () {
-                                        showMsgDialogEdt(context, cmt, "Số CMT");
+                                        showMsgDialogEdt(
+                                            context, cmt, "Số CMT");
                                       },
                                       child: Icon(Icons.edit)))
                             ],
@@ -217,8 +233,8 @@ class _ConfirmShopState extends State<ConfirmShop> {
                           child: Text(
                             "Mã số thuế",
                             overflow: TextOverflow.ellipsis,
-                            style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                         ),
                         Flexible(
@@ -277,8 +293,8 @@ class _ConfirmShopState extends State<ConfirmShop> {
                           child: Text(
                             "Số giấy CNĐKKD",
                             overflow: TextOverflow.ellipsis,
-                            style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                         ),
                         Flexible(
@@ -303,7 +319,9 @@ class _ConfirmShopState extends State<ConfirmShop> {
                                   child: InkWell(
                                       onTap: () {
                                         showMsgDialogEdt(
-                                            context, number_paper_auth, "Số giấy CNĐKKD");
+                                            context,
+                                            number_paper_auth,
+                                            "Số giấy CNĐKKD");
                                       },
                                       child: Icon(Icons.edit)))
                             ],
@@ -337,8 +355,8 @@ class _ConfirmShopState extends State<ConfirmShop> {
                           child: Text(
                             "Nơi Cấp",
                             overflow: TextOverflow.ellipsis,
-                            style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                         ),
                         Flexible(
@@ -362,7 +380,8 @@ class _ConfirmShopState extends State<ConfirmShop> {
                                   color: Colors.transparent,
                                   child: InkWell(
                                       onTap: () {
-                                        showMsgDialogEdt(context, address_auth, "Nơi cấp");
+                                        showMsgDialogEdt(
+                                            context, address_auth, "Nơi cấp");
                                       },
                                       child: Icon(Icons.edit)))
                             ],
@@ -396,8 +415,8 @@ class _ConfirmShopState extends State<ConfirmShop> {
                           child: Text(
                             "Ngày cấp",
                             overflow: TextOverflow.ellipsis,
-                            style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                         ),
                         Flexible(
@@ -422,15 +441,18 @@ class _ConfirmShopState extends State<ConfirmShop> {
                                   child: InkWell(
                                       onTap: () {
                                         showDatePicker(
-                                            context: context,
-                                            initialDate: DateTime.now(),
-                                            firstDate: DateTime(1900),
-                                            lastDate: DateTime(2100)
-                                        ).then((value){
-                                          String end = DateFormat('dd-MM-yyyy', 'en_US')
-                                              .format(DateTime.parse(value.toString()));
+                                                context: context,
+                                                initialDate: DateTime.now(),
+                                                firstDate: DateTime(1900),
+                                                lastDate: DateTime(2100))
+                                            .then((value) {
+                                          String end =
+                                              DateFormat('dd-MM-yyyy', 'en_US')
+                                                  .format(DateTime.parse(
+                                                      value.toString()));
                                           date_auth.text = end;
-                                          update(null,null, null, null, null, date_auth.text,null);
+                                          update(null, null, null, null, null,
+                                              date_auth.text, null);
                                         });
                                       },
                                       child: Icon(Icons.edit)))
@@ -466,8 +488,8 @@ class _ConfirmShopState extends State<ConfirmShop> {
                           child: Text(
                             "2 mặt CMT hoăc thẻ căn cước, hộ chiếu (bắt buộc), đăng ký kinh doanh, giấy tờ khác (nếu có)",
                             maxLines: 6,
-                            style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                         ),
                         Flexible(
@@ -475,8 +497,8 @@ class _ConfirmShopState extends State<ConfirmShop> {
                           child: InkWell(
                             onTap: () {
                               if (imgs.length > 10) {
-                                showToastErr("Tối đa 10 ảnh cho 1 shop", context,
-                                    Colors.red, Icons.error_outline);
+                                showToastErr("Tối đa 10 ảnh cho 1 shop",
+                                    context, Colors.red, Icons.error_outline);
                               } else {
                                 addimg = true;
                                 file = ImagePicker.pickImage(
@@ -491,9 +513,10 @@ class _ConfirmShopState extends State<ConfirmShop> {
                                   color: Config().colorMain),
                               child: Center(
                                   child: Text(
-                                    'Thêm ảnh',
-                                    style: TextStyle(color: Colors.white, fontSize: 17),
-                                  )),
+                                'Thêm ảnh',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 17),
+                              )),
                             ),
                           ),
                         ),
@@ -504,13 +527,16 @@ class _ConfirmShopState extends State<ConfirmShop> {
                 ],
               ),
             );
-          }else{
-            return Center(child: CircularProgressIndicator(),);
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           }
         },
       ),
     );
   }
+
   showMsgDialogEdt(
       BuildContext context, TextEditingController sc, String title) {
     showDialog(
@@ -534,14 +560,17 @@ class _ConfirmShopState extends State<ConfirmShop> {
                   child: Text('Lưu'),
                   onPressed: () {
                     //List file,List dels, cmt, number_auth, number_paper_auth, date_auth,address_auth
-                    if(title == 'Số CMT'){
-                      update(null,null, cmt.text, null, null, null,null);
-                    }else if(title == 'Mã số thuế'){
-                      update(null,null, null, number_auth.text, null, null,null);
-                    }else if(title == 'Số giấy CNĐKKD'){
-                      update(null,null, null, null, number_paper_auth.text, null,null);
-                    }else if(title == 'Nơi cấp'){
-                      update(null,null, null, null, null, null,address_auth.text);
+                    if (title == 'Số CMT') {
+                      update(null, null, cmt.text, null, null, null, null);
+                    } else if (title == 'Mã số thuế') {
+                      update(
+                          null, null, null, number_auth.text, null, null, null);
+                    } else if (title == 'Số giấy CNĐKKD') {
+                      update(null, null, null, null, number_paper_auth.text,
+                          null, null);
+                    } else if (title == 'Nơi cấp') {
+                      update(null, null, null, null, null, null,
+                          address_auth.text);
                     }
                     Navigator.of(context).pop(MsgDialog);
                   },
@@ -562,26 +591,25 @@ class _ConfirmShopState extends State<ConfirmShop> {
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             null != snapshot.data) {
-          if(imgs.length > 0){
-            if(imgs[imgs.length - 1] != snapshot.data && addimg){
+          if (imgs.length > 0) {
+            if (imgs[imgs.length - 1] != snapshot.data && addimg) {
               imgs.add(snapshot.data);
             }
-          }else if(addimg){
+          } else if (addimg) {
             imgs.add(snapshot.data);
           }
-          if(images.length >0 && imgs.length>0){
-            return avatarSuccess(imgs,images);
-          }else if(images.length >0 && imgs.length == 0){
-            return avatarSuccess(imgs,images);
-          }else if(images.length == 0 && imgs.length > 0){
-            return avatarSuccess(imgs,images);
-          }else{
-            return avatarSuccess(imgs,images);
+          if (images.length > 0 && imgs.length > 0) {
+            return avatarSuccess(imgs, images);
+          } else if (images.length > 0 && imgs.length == 0) {
+            return avatarSuccess(imgs, images);
+          } else if (images.length == 0 && imgs.length > 0) {
+            return avatarSuccess(imgs, images);
+          } else {
+            return avatarSuccess(imgs, images);
           }
-
-        } else  if(images.length>0){
-          return avatarSuccess(imgs,images);
-        }else{
+        } else if (images.length > 0) {
+          return avatarSuccess(imgs, images);
+        } else {
           return Container(
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.all(10),
@@ -589,20 +617,19 @@ class _ConfirmShopState extends State<ConfirmShop> {
             width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.grey,width: 1)
-            ),
+                border: Border.all(color: Colors.grey, width: 1)),
           );
         }
       },
     );
   }
+
   Widget avatarSuccess(List imgs, List images) {
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.grey,width: 1)
-      ),
+          border: Border.all(color: Colors.grey, width: 1)),
       child: GridView.count(
         crossAxisCount: 3,
         shrinkWrap: true,
@@ -610,82 +637,93 @@ class _ConfirmShopState extends State<ConfirmShop> {
         crossAxisSpacing: 4,
         mainAxisSpacing: 4,
         childAspectRatio: 0.8,
-        children: List.generate(images.length + imgs.length, (index) =>Container(
-          color: Colors.grey.shade100,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 12,
-              ),
-              images.length > 0 && index <= (images.length-1) ? Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 10, right: 10),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        height: 100,
-                        width: 100,
-                        child: Image.network(
-                          Const().image_host + images[index].path + images[index].name,
-                          fit: BoxFit.cover,
-                        ),
+        children: List.generate(
+            images.length + imgs.length,
+            (index) => Container(
+                  color: Colors.grey.shade100,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 12,
                       ),
-                    ),
+                      images.length > 0 && index <= (images.length - 1)
+                          ? Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(top: 10, right: 10),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Container(
+                                      height: 100,
+                                      width: 100,
+                                      child: Image.network(
+                                        Const().image_host +
+                                            images[index].path +
+                                            images[index].name,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                    top: 0,
+                                    right: 0,
+                                    child: InkWell(
+                                      onTap: () {
+                                        showMsgDialog1(
+                                            context,
+                                            "Bạn có muốn xóa ảnh này không",
+                                            index);
+                                      },
+                                      child: CircleAvatar(
+                                          radius: 14,
+                                          backgroundColor:
+                                              Colors.black.withOpacity(0.8),
+                                          child: Icon(Icons.close,
+                                              color: Colors.white)),
+                                    ))
+                              ],
+                            )
+                          : Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(top: 10, right: 10),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Container(
+                                      height: 100,
+                                      width: 100,
+                                      child: Image.file(
+                                        imgs[index - images.length],
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                    top: 0,
+                                    right: 0,
+                                    child: InkWell(
+                                      onTap: () {
+                                        showMsgDialog(
+                                            context,
+                                            "Bạn có muốn xóa ảnh này không",
+                                            index);
+                                      },
+                                      child: CircleAvatar(
+                                          radius: 14,
+                                          backgroundColor:
+                                              Colors.black.withOpacity(0.8),
+                                          child: Icon(Icons.close,
+                                              color: Colors.white)),
+                                    ))
+                              ],
+                            ),
+                    ],
                   ),
-                  Positioned(
-                      top: 0,
-                      right: 0,
-                      child: InkWell(
-                        onTap: (){
-                          showMsgDialog1(context, "Bạn có muốn xóa ảnh này không", index);
-                        },
-                        child: CircleAvatar(
-                            radius: 14,
-                            backgroundColor: Colors.black.withOpacity(0.8),
-                            child: Icon(Icons.close, color: Colors.white)
-                        ),
-                      )
-                  )
-                ],
-              ):Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 10, right: 10),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        height: 100,
-                        width: 100,
-                        child: Image.file(
-                          imgs[index - images.length],
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                      top: 0,
-                      right: 0,
-                      child: InkWell(
-                        onTap: (){
-                          showMsgDialog(context, "Bạn có muốn xóa ảnh này không", index);
-                        },
-                        child: CircleAvatar(
-                            radius: 14,
-                            backgroundColor: Colors.black.withOpacity(0.8),
-                            child: Icon(Icons.close, color: Colors.white)
-                        ),
-                      )
-                  )
-                ],
-              ),
-
-            ],
-          ),
-        )),
+                )),
       ),
     );
   }
@@ -719,36 +757,36 @@ class _ConfirmShopState extends State<ConfirmShop> {
               ],
             ));
   }
-  showMsgDialog1(
-      BuildContext context, String title,  index) {
+
+  showMsgDialog1(BuildContext context, String title, index) {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Center(
-            child: Text(
-              title,
-              style: TextStyle(color: Colors.blueAccent),
-            ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Xóa'),
-              onPressed: () {
-                iddel.add(images[index].id);
-                images.removeAt(index);
-                setState(() {
-                  addimg1 = false;
-                });
-                Navigator.of(context).pop();
-              },
-            ),
-            FlatButton(
-              child: Text('Đóng'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ));
+              title: Center(
+                child: Text(
+                  title,
+                  style: TextStyle(color: Colors.blueAccent),
+                ),
+              ),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Xóa'),
+                  onPressed: () {
+                    iddel.add(images[index].id);
+                    images.removeAt(index);
+                    setState(() {
+                      addimg1 = false;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                ),
+                FlatButton(
+                  child: Text('Đóng'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ));
   }
 }

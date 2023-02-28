@@ -8,7 +8,7 @@ import 'package:gcaeco_app/screen/location_manh/list_loacation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class UpdateAddressShop extends StatefulWidget {
-  AddressItem item ;
+  AddressItem item;
   UpdateAddressShop({this.item});
   @override
   _UpdateAddressShopState createState() => _UpdateAddressShopState();
@@ -18,7 +18,7 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
-  List _list = ["Mặc định","Không chọn"];
+  List _list = ["Mặc định", "Không chọn"];
   String isdefault = "Không chọn";
   LocationBloc bloc = new LocationBloc();
   ShopBloc shopBloc = new ShopBloc();
@@ -40,7 +40,8 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
     bloc.loacationBlocTinh();
     getData();
   }
-  getData(){
+
+  getData() {
     name.text = widget.item.name_contact;
     phone.text = widget.item.phone;
     tinh.text = widget.item.province_name;
@@ -51,12 +52,13 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
     key1 = widget.item.province_id;
     key2 = widget.item.district_id;
     key3 = widget.item.ward_id;
-    if(widget.item.isdefault == "1"){
+    if (widget.item.isdefault == "1") {
       isdefault = _list[0];
-    }else{
+    } else {
       isdefault = _list[1];
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +80,7 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                       'Cập nhật địa chỉ doanh nghiệp',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xff8f8b21),
+                          color: Config.green,
                           fontSize: 25),
                       textAlign: TextAlign.center,
                     ),
@@ -86,14 +88,13 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                   // nguoi lien he
                   Padding(
                     padding:
-                    const EdgeInsets.only(top: 20, left: 10, right: 10),
+                        const EdgeInsets.only(top: 20, left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Tên người liên hệ (*)",
-                          style:
-                          TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -104,15 +105,14 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -127,14 +127,13 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                   //sdt
                   Padding(
                     padding:
-                    const EdgeInsets.only(top: 20, left: 10, right: 10),
+                        const EdgeInsets.only(top: 20, left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Số điện thoại (*)",
-                          style:
-                          TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -145,15 +144,14 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -168,14 +166,13 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                   //Tinh/thanh pho
                   Padding(
                     padding:
-                    const EdgeInsets.only(top: 20, left: 10, right: 10),
+                        const EdgeInsets.only(top: 20, left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Tĩnh/Thành Phố",
-                          style:
-                          TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -186,15 +183,14 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           readOnly: true,
                           showCursor: false,
@@ -203,12 +199,12 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ListLocation(
-                                      title: "Tỉnh/Thành Phố",
-                                      idTinh: '',
-                                      idQuan: '',
-                                      index: "",
-                                    )));
-                            if(result != null){
+                                          title: "Tỉnh/Thành Phố",
+                                          idTinh: '',
+                                          idQuan: '',
+                                          index: "",
+                                        )));
+                            if (result != null) {
                               tinh.text = result.name;
                               key1 = result.id;
                               quan.text = "";
@@ -228,14 +224,13 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                   //quan/huyen
                   Padding(
                     padding:
-                    const EdgeInsets.only(top: 20, left: 10, right: 10),
+                        const EdgeInsets.only(top: 20, left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Quận/Huyện",
-                          style:
-                          TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -246,35 +241,35 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           readOnly: true,
                           showCursor: false,
                           onTap: () async {
-                            if(tinh.text != ""){
+                            if (tinh.text != "") {
                               var result = await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => ListLocation(
-                                        title: "Quận/Huyện",
-                                        idTinh: key1,
-                                        idQuan: '',
-                                        index: "",
-                                      )));
-                              if(result != null){
+                                            title: "Quận/Huyện",
+                                            idTinh: key1,
+                                            idQuan: '',
+                                            index: "",
+                                          )));
+                              if (result != null) {
                                 quan.text = result.name;
                                 key2 = result.id;
                               }
-                            }else{
-                              showToast("Vui nhập tĩnh thành phố ", context, Colors.grey, Icons.error_outline);
+                            } else {
+                              showToast("Vui nhập tĩnh thành phố ", context,
+                                  Colors.grey, Icons.error_outline);
                             }
                           },
                           validator: (value) {
@@ -290,14 +285,13 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                   //phuong/xa
                   Padding(
                     padding:
-                    const EdgeInsets.only(top: 20, left: 10, right: 10),
+                        const EdgeInsets.only(top: 20, left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Phường/Xã",
-                          style:
-                          TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -308,35 +302,35 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           readOnly: true,
                           showCursor: false,
                           onTap: () async {
-                            if(tinh.text != ""&& quan.text != ""){
+                            if (tinh.text != "" && quan.text != "") {
                               var result = await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => ListLocation(
-                                        title: "Phường/Xã",
-                                        idTinh: '',
-                                        idQuan: key2,
-                                        index: "",
-                                      )));
-                              if(result != null){
+                                            title: "Phường/Xã",
+                                            idTinh: '',
+                                            idQuan: key2,
+                                            index: "",
+                                          )));
+                              if (result != null) {
                                 phuong.text = result.name;
                                 key3 = result.id;
                               }
-                            }else{
-                              showToast("Vui nhập tĩnh thành phố và quận huyện", context, Colors.grey, Icons.error_outline);
+                            } else {
+                              showToast("Vui nhập tĩnh thành phố và quận huyện",
+                                  context, Colors.grey, Icons.error_outline);
                             }
                           },
                           validator: (value) {
@@ -352,14 +346,13 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                   // dia chi
                   Padding(
                     padding:
-                    const EdgeInsets.only(top: 20, left: 10, right: 10),
+                        const EdgeInsets.only(top: 20, left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Địa chỉ (*)",
-                          style:
-                          TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -370,15 +363,14 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -413,46 +405,44 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                   //mac dinh
                   Padding(
                     padding:
-                    const EdgeInsets.only(top: 20, left: 10, right: 10),
+                        const EdgeInsets.only(top: 20, left: 10, right: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Mặc định",
-                          style:
-                          TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         DropdownButtonFormField(
                           value: isdefault,
-                          style: TextStyle(color: Color(0xff8f8b21)),
+                          style: TextStyle(color: Config.green),
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           hint: Text(
                             "--Chọn loại doanh nghiêp--",
-                            style: TextStyle(color: Color(0xff8f8b21)),
+                            style: TextStyle(color: Config.green),
                           ),
                           onChanged: (value) {
                             isdefault = value;
                           },
                           items: _list
                               .map((e) => DropdownMenuItem(
-                            child: Text(e),
-                            value: e,
-                          ))
+                                    child: Text(e),
+                                    value: e,
+                                  ))
                               .toList(),
                         ),
                       ],
@@ -461,7 +451,7 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                   // tạo doanh nghiep
                   Padding(
                     padding:
-                    const EdgeInsets.only(top: 15, left: 10, right: 10),
+                        const EdgeInsets.only(top: 15, left: 10, right: 10),
                     child: Container(
                       width: double.infinity,
                       height: 40,
@@ -472,19 +462,29 @@ class _UpdateAddressShopState extends State<UpdateAddressShop> {
                         color: Config().colorMain,
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
-                            var res = await shopBloc.postAddres(widget.item.id,name.text, phone.text, key1, key2, key3, address.text, isdefault == "Không chọn"?0:1);
-                            if(res){
-                              Navigator.pop(context,"ok");
-                              showToast("Cập nhật địa chỉ thành công", context, Colors.grey, Icons.check);
-                            }else{
-                              showToast("Cập nhật địa chỉ thất bại", context, Colors.grey, Icons.error_outline);
-
+                            var res = await shopBloc.postAddres(
+                                widget.item.id,
+                                name.text,
+                                phone.text,
+                                key1,
+                                key2,
+                                key3,
+                                address.text,
+                                isdefault == "Không chọn" ? 0 : 1);
+                            if (res) {
+                              Navigator.pop(context, "ok");
+                              showToast("Cập nhật địa chỉ thành công", context,
+                                  Colors.grey, Icons.check);
+                            } else {
+                              showToast("Cập nhật địa chỉ thất bại", context,
+                                  Colors.grey, Icons.error_outline);
                             }
                           }
                         },
                         child: Text(
                           'Cập nhật địa chỉ doanh nghiệp',
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
                         ),
                       ),
                     ),

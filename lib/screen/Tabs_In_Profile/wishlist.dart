@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gcaeco_app/bloc/product_bloc.dart';
 import 'package:gcaeco_app/helper/Config.dart';
+import 'package:gcaeco_app/screen/layouts/grid_view_custom.dart';
 import 'package:gcaeco_app/screen/layouts/products/item_product_grid.dart';
 
 // ignore: camel_case_types
@@ -35,7 +36,7 @@ class _WishlistState extends State<Wishlist> {
 
   _scrollListener() {
     if (_scrollController.offset >=
-        _scrollController.position.maxScrollExtent &&
+            _scrollController.position.maxScrollExtent &&
         !_scrollController.position.outOfRange) {
       page++;
       Map<String, dynamic> request_body = new Map<String, dynamic>();
@@ -49,12 +50,11 @@ class _WishlistState extends State<Wishlist> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          backgroundColor: Config().colorMain,
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
-          ),
-          title: Text('Sản phẩm yêu thích')
-        ),
+            backgroundColor: Config().colorMain,
+            iconTheme: IconThemeData(
+              color: Colors.white, //change your color here
+            ),
+            title: Text('Sản phẩm yêu thích')),
         body: body());
   }
 
@@ -66,53 +66,35 @@ class _WishlistState extends State<Wishlist> {
     return StreamBuilder(
       stream: bloc.allProducts,
       builder: (context, AsyncSnapshot<dynamic> snapshot) {
-        return snapshot.hasData
-            ? CustomScrollView(
+        if (!snapshot.hasData) {
+          return Align(
+              alignment: Alignment.center, child: CircularProgressIndicator());
+        } else if (snapshot.data.length == 0) {
+          return Container(
+            padding: EdgeInsets.only(top: 10),
+            child: Center(
+              child: Text(
+                'Không tìm thấy sản phẩm',
+                style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+          );
+        }
+        return GridViewCustom(
+          itemCount: snapshot.data.length,
+          maxWight: 180,
+          mainAxisExtent: 300,
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          shrinkWrap: true,
           controller: _scrollController,
-          slivers: <Widget>[
-            snapshot.data.length > 0
-                ? SliverPadding(
-              padding: EdgeInsets.all(10),
-              sliver: SliverGrid(
-                gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
-                  childAspectRatio: MediaQuery.of(context).size.width > MediaQuery.of(context).size.height ?  0.60 : 0.67,
-                  crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
-                ),
-                delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        return ItemProductGrid(snapshot.data[index]);
-                  },
-                  childCount: snapshot.data.length,
-                ),
-              ),
-            )
-                : SliverToBoxAdapter(
-              child: Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Center(
-                  child: Text(
-                    'Không tìm thấy sản phẩm',
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ),
-            )
-          ],
-        )
-            : Align(
-            alignment: Alignment.center,
-            child: CircularProgressIndicator());
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          itemBuilder: (context, index) =>
+              ItemProductGrid(snapshot.data[index]),
+        );
       },
     );
   }
@@ -128,5 +110,4 @@ class _WishlistState extends State<Wishlist> {
       ),
     );
   }
-
 }

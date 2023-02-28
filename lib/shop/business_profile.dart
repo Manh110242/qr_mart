@@ -46,22 +46,22 @@ class _BusinessProfileState extends State<BusinessProfile> {
     return type;
   }
 
-
   setTime(int timestamp) {
     DateTime _timeDate = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
     String timedata = "";
     timeNow = TimeElapsed.fromDateTime(_timeDate);
-    if(timeNow == "Now"){ timedata = "Đang cập nhật";}else if (timeNow.substring(timeNow.length - 1, timeNow.length) == "w") {
+    if (timeNow == "Now") {
+      timedata = "Đang cập nhật";
+    } else if (timeNow.substring(timeNow.length - 1, timeNow.length) == "w") {
       var time = timeNow.substring(0, timeNow.length - 1);
       int timeLast = int.parse(time);
-      if(timeLast <= 4){
+      if (timeLast <= 4) {
         timedata = timeNow.substring(0, timeNow.length - 1) + " tuần trước";
-      }else if(timeLast > 4 && ((timeLast*7)/30).round() <= 12){
-        timedata = ((timeLast*7)/30).round().toString() + " tháng trước";
-      }else{
-        timedata = ((timeLast*7)/30/12).round().toString() + " năm trước";
+      } else if (timeLast > 4 && ((timeLast * 7) / 30).round() <= 12) {
+        timedata = ((timeLast * 7) / 30).round().toString() + " tháng trước";
+      } else {
+        timedata = ((timeLast * 7) / 30 / 12).round().toString() + " năm trước";
       }
-
     } else if (timeNow.substring(timeNow.length - 1, timeNow.length) == "d") {
       timedata = timeNow.substring(0, timeNow.length - 1) + " ngày trước";
     } else if (timeNow.substring(timeNow.length - 1, timeNow.length) == "h") {
@@ -72,17 +72,19 @@ class _BusinessProfileState extends State<BusinessProfile> {
     return timedata;
   }
 
-  update(scale1,email1,website1,facebook1,zalo1,description1)async{
+  update(scale1, email1, website1, facebook1, zalo1, description1) async {
     LoadingDialog.showLoadingDialog(context, "Đang tải...");
-    var  res = await _bloc.updateShop(scale1, email1, website1, facebook1, zalo1, description1,certificate: certificate);
+    var res = await _bloc.updateShop(
+        scale1, email1, website1, facebook1, zalo1, description1,
+        certificate: certificate);
     LoadingDialog.hideLoadingDialog(context);
-    if(res != null){
-      if(res['code'] == 1){
+    if (res != null) {
+      if (res['code'] == 1) {
         showToast("Cập nhật thành công", context, Colors.grey, Icons.check);
-      }else{
+      } else {
         showToast("Lỗi dữ liệu", context, Colors.grey, Icons.error_outline);
       }
-    }else{
+    } else {
       showToast("Lỗi kết nối", context, Colors.grey, Icons.error_outline);
     }
     setState(() {});
@@ -107,8 +109,8 @@ class _BusinessProfileState extends State<BusinessProfile> {
             facebook.text = shop['facebook'];
             zalo.text = shop['zalo'];
             description.text = shop['description'];
-            snapshot.data['scales'].forEach((k,v)  {
-              if(shop['scale'].toString() == v.toString()){
+            snapshot.data['scales'].forEach((k, v) {
+              if (shop['scale'].toString() == v.toString()) {
                 scale.text = v;
               }
             });
@@ -119,14 +121,18 @@ class _BusinessProfileState extends State<BusinessProfile> {
                   SizedBox(
                     height: 20,
                   ),
-                  shop['status'] == 1 ?Center():Text(
-                    'Gian hàng quý khách đăng chờ được duyệt.',
-                    style: TextStyle(color: Colors.red, fontSize: 16),
-                  ),
-                  shop['status'] == 1 ?Center():Text(
-                    "Vui lòng đợi tối đa là 24h.",
-                    style: TextStyle(color: Colors.red, fontSize: 16),
-                  ),
+                  shop['status'] == 1
+                      ? Center()
+                      : Text(
+                          'Gian hàng quý khách đăng chờ được duyệt.',
+                          style: TextStyle(color: Colors.red, fontSize: 16),
+                        ),
+                  shop['status'] == 1
+                      ? Center()
+                      : Text(
+                          "Vui lòng đợi tối đa là 24h.",
+                          style: TextStyle(color: Colors.red, fontSize: 16),
+                        ),
                   SizedBox(
                     height: 30,
                   ),
@@ -184,7 +190,9 @@ class _BusinessProfileState extends State<BusinessProfile> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                snapshot.data['total_products']!= null ?snapshot.data['total_products'].toString():0,
+                                snapshot.data['total_products'] != null
+                                    ? snapshot.data['total_products'].toString()
+                                    : 0,
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                   color: Colors.black,
@@ -276,7 +284,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
                             children: [
                               Expanded(
                                 child: Text(
-                                  scale.text != ""?scale.text :shop["scale"] != null && quymo != null ? quymo :"",
+                                  scale.text != ""
+                                      ? scale.text
+                                      : shop["scale"] != null && quymo != null
+                                          ? quymo
+                                          : "",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     color: Colors.black,
@@ -353,7 +365,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
                               Flexible(
                                 flex: 8,
                                 child: Text(
-                                 email.text != ""?email.text : shop['email'] != null ? shop['email'] : "",
+                                  email.text != ""
+                                      ? email.text
+                                      : shop['email'] != null
+                                          ? shop['email']
+                                          : "",
                                   textAlign: TextAlign.start,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -362,9 +378,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
                                   ),
                                 ),
                               ),
-                              InkWell(onTap: () {
-                                showMsgDialogEdt(context,email , "Email");
-                              }, child: Icon(Icons.edit))
+                              InkWell(
+                                  onTap: () {
+                                    showMsgDialogEdt(context, email, "Email");
+                                  },
+                                  child: Icon(Icons.edit))
                             ],
                           ),
                         ),
@@ -405,7 +423,6 @@ class _BusinessProfileState extends State<BusinessProfile> {
                                   ),
                                 ),
                               ),
-
                             ],
                           ),
                         ),
@@ -437,9 +454,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
                               Flexible(
                                 flex: 8,
                                 child: Text(
-                                  website.text != ""?website.text :shop['website'] != null
-                                      ? shop['website']
-                                      : "",
+                                  website.text != ""
+                                      ? website.text
+                                      : shop['website'] != null
+                                          ? shop['website']
+                                          : "",
                                   textAlign: TextAlign.start,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -448,9 +467,12 @@ class _BusinessProfileState extends State<BusinessProfile> {
                                   ),
                                 ),
                               ),
-                              InkWell(onTap: () {
-                                showMsgDialogEdt(context,website , "Website");
-                              }, child: Icon(Icons.edit))
+                              InkWell(
+                                  onTap: () {
+                                    showMsgDialogEdt(
+                                        context, website, "Website");
+                                  },
+                                  child: Icon(Icons.edit))
                             ],
                           ),
                         ),
@@ -482,9 +504,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
                               Flexible(
                                 flex: 8,
                                 child: Text(
-                                  facebook.text != ""?facebook.text :shop['facebook'] != null
-                                      ? shop['facebook']
-                                      : "",
+                                  facebook.text != ""
+                                      ? facebook.text
+                                      : shop['facebook'] != null
+                                          ? shop['facebook']
+                                          : "",
                                   textAlign: TextAlign.start,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -493,9 +517,12 @@ class _BusinessProfileState extends State<BusinessProfile> {
                                   ),
                                 ),
                               ),
-                              InkWell(onTap: () {
-                                showMsgDialogEdt(context,facebook , "Facebook");
-                              }, child: Icon(Icons.edit))
+                              InkWell(
+                                  onTap: () {
+                                    showMsgDialogEdt(
+                                        context, facebook, "Facebook");
+                                  },
+                                  child: Icon(Icons.edit))
                             ],
                           ),
                         ),
@@ -527,7 +554,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
                               Flexible(
                                 flex: 8,
                                 child: Text(
-                                  zalo.text != ""?zalo.text :shop['zalo'] != null ? shop['zalo'] : "",
+                                  zalo.text != ""
+                                      ? zalo.text
+                                      : shop['zalo'] != null
+                                          ? shop['zalo']
+                                          : "",
                                   textAlign: TextAlign.start,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -536,9 +567,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
                                   ),
                                 ),
                               ),
-                              InkWell(onTap: () {
-                                showMsgDialogEdt(context,zalo , "Zalo");
-                              }, child: Icon(Icons.edit))
+                              InkWell(
+                                  onTap: () {
+                                    showMsgDialogEdt(context, zalo, "Zalo");
+                                  },
+                                  child: Icon(Icons.edit))
                             ],
                           ),
                         ),
@@ -570,9 +603,11 @@ class _BusinessProfileState extends State<BusinessProfile> {
                               Flexible(
                                 flex: 8,
                                 child: Text(
-                                  description.text != ""?description.text :shop['description'] != null
-                                      ? shop['description']
-                                      : "",
+                                  description.text != ""
+                                      ? description.text
+                                      : shop['description'] != null
+                                          ? shop['description']
+                                          : "",
                                   textAlign: TextAlign.start,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -581,9 +616,12 @@ class _BusinessProfileState extends State<BusinessProfile> {
                                   ),
                                 ),
                               ),
-                              InkWell(onTap: () {
-                                showMsgDialogEdt(context,description , "Mô tả thêm");
-                              }, child: Icon(Icons.edit))
+                              InkWell(
+                                  onTap: () {
+                                    showMsgDialogEdt(
+                                        context, description, "Mô tả thêm");
+                                  },
+                                  child: Icon(Icons.edit))
                             ],
                           ),
                         ),
@@ -604,108 +642,106 @@ class _BusinessProfileState extends State<BusinessProfile> {
     );
   }
 
-
   showMsgDialogEdt(
       BuildContext context, TextEditingController sc, String title) {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Center(
-            child: Text(
-              title,
-              style: TextStyle(color: Colors.blueAccent),
-            ),
-          ),
-          content: TextField(
-            decoration: InputDecoration(
-              hintText: title,
-            ),
-            controller: sc,
-            style: TextStyle(fontSize: 14),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Lưu'),
-              onPressed: () {
-                //scale,email,website,facebook,zalo,description,
-                if(title == "Email"){
-                  update(null, email.text, null, null, null, null);
-                }else if(title == "Website"){
-                  update(null, null, website.text, null, null, null);
-                }else if(title == "Facebook"){
-                  update(null, null, null, facebook.text, null, null);
-                }else if(title == "Zalo"){
-                  update(null, null, null, null, zalo.text, null);
-                }else if(title == "Mô tả thêm"){
-                  update(null, null, null, null, null, description.text);
-                }
-                Navigator.of(context).pop(context);
-              },
-            ),
-            FlatButton(
-              child: Text('Đóng'),
-              onPressed: () {
-                Navigator.of(context).pop(context);
-              },
-            ),
-          ],
-        ));
+              title: Center(
+                child: Text(
+                  title,
+                  style: TextStyle(color: Colors.blueAccent),
+                ),
+              ),
+              content: TextField(
+                decoration: InputDecoration(
+                  hintText: title,
+                ),
+                controller: sc,
+                style: TextStyle(fontSize: 14),
+              ),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Lưu'),
+                  onPressed: () {
+                    //scale,email,website,facebook,zalo,description,
+                    if (title == "Email") {
+                      update(null, email.text, null, null, null, null);
+                    } else if (title == "Website") {
+                      update(null, null, website.text, null, null, null);
+                    } else if (title == "Facebook") {
+                      update(null, null, null, facebook.text, null, null);
+                    } else if (title == "Zalo") {
+                      update(null, null, null, null, zalo.text, null);
+                    } else if (title == "Mô tả thêm") {
+                      update(null, null, null, null, null, description.text);
+                    }
+                    Navigator.of(context).pop(context);
+                  },
+                ),
+                FlatButton(
+                  child: Text('Đóng'),
+                  onPressed: () {
+                    Navigator.of(context).pop(context);
+                  },
+                ),
+              ],
+            ));
   }
 
-  showMsgDialog(
-      BuildContext context, String title, List list) {
+  showMsgDialog(BuildContext context, String title, List list) {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Center(
-            child: Text(
-              title,
-              style: TextStyle(color: Colors.blueAccent),
-            ),
-          ),
-          content: DropdownButtonFormField(
-            value: scale.text,
-            style: TextStyle(color: Color(0xff8f8b21)),
-            decoration: InputDecoration(
-              errorText: null,
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xffc4a95a)),
+              title: Center(
+                child: Text(
+                  title,
+                  style: TextStyle(color: Colors.blueAccent),
+                ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xff8f8b21), width: 3),
+              content: DropdownButtonFormField(
+                value: scale.text,
+                style: TextStyle(color: Config.green),
+                decoration: InputDecoration(
+                  errorText: null,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Config.green),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Config.green, width: 3),
+                  ),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Config.green)),
+                ),
+                hint: Text(
+                  "--Chọn loại doanh nghiêp--",
+                  style: TextStyle(color: Config.green),
+                ),
+                onChanged: (value) {
+                  scale.text = value.toString();
+                },
+                items: list
+                    .map((e) => DropdownMenuItem(
+                          child: Text(e),
+                          value: e,
+                        ))
+                    .toList(),
               ),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xffc4a95a))),
-            ),
-            hint: Text(
-              "--Chọn loại doanh nghiêp--",
-              style: TextStyle(color: Color(0xff8f8b21)),
-            ),
-            onChanged: (value) {
-              scale.text = value.toString();
-            },
-            items: list
-                .map((e) => DropdownMenuItem(
-              child: Text(e),
-              value: e,
-            ))
-                .toList(),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Lưu'),
-              onPressed: () {
-                update(scale.text, null, null, null, null, null);
-                Navigator.of(context).pop(context);
-              },
-            ),
-            FlatButton(
-              child: Text('Đóng'),
-              onPressed: () {
-                Navigator.of(context).pop(context);
-              },
-            ),
-          ],
-        ));
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Lưu'),
+                  onPressed: () {
+                    update(scale.text, null, null, null, null, null);
+                    Navigator.of(context).pop(context);
+                  },
+                ),
+                FlatButton(
+                  child: Text('Đóng'),
+                  onPressed: () {
+                    Navigator.of(context).pop(context);
+                  },
+                ),
+              ],
+            ));
   }
 }

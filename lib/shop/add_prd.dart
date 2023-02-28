@@ -80,8 +80,7 @@ class _AddPrdState extends State<AddPrd> {
                       children: [
                         Text(
                           "Tên sản phẩm (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -92,15 +91,14 @@ class _AddPrdState extends State<AddPrd> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -121,8 +119,7 @@ class _AddPrdState extends State<AddPrd> {
                       children: [
                         Text(
                           "Mô tả chi tiết (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -135,15 +132,14 @@ class _AddPrdState extends State<AddPrd> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -164,8 +160,7 @@ class _AddPrdState extends State<AddPrd> {
                       children: [
                         Text(
                           "Danh mục sản phẩm",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -179,24 +174,24 @@ class _AddPrdState extends State<AddPrd> {
                                   _list.add(e.name);
                                 });
                                 return DropdownButtonFormField(
-                                  style: TextStyle(color: Color(0xff8f8b21)),
+                                  style: TextStyle(color: Config.green),
                                   decoration: InputDecoration(
                                     errorText: null,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Color(0xffc4a95a)),
+                                          BorderSide(color: Config.green),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          color: Color(0xff8f8b21), width: 3),
+                                          color: Config.green, width: 3),
                                     ),
                                     border: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color(0xffc4a95a))),
+                                        borderSide:
+                                            BorderSide(color: Config.green)),
                                   ),
                                   hint: Text(
                                     "--Chọn danh mục--",
-                                    style: TextStyle(color: Color(0xff8f8b21)),
+                                    style: TextStyle(color: Config.green),
                                   ),
                                   onChanged: (value) {
                                     snapshot.data.forEach((e) {
@@ -222,24 +217,24 @@ class _AddPrdState extends State<AddPrd> {
                               } else {
                                 return DropdownButtonFormField(
                                   onChanged: (value) {},
-                                  style: TextStyle(color: Color(0xff8f8b21)),
+                                  style: TextStyle(color: Config.green),
                                   decoration: InputDecoration(
                                     errorText: null,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Color(0xffc4a95a)),
+                                          BorderSide(color: Config.green),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          color: Color(0xff8f8b21), width: 3),
+                                          color: Config.green, width: 3),
                                     ),
                                     border: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color(0xffc4a95a))),
+                                        borderSide:
+                                            BorderSide(color: Config.green)),
                                   ),
                                   hint: Text(
                                     "--Chọn danh mục--",
-                                    style: TextStyle(color: Color(0xff8f8b21)),
+                                    style: TextStyle(color: Config.green),
                                   ),
                                   items: [],
                                 );
@@ -270,15 +265,14 @@ class _AddPrdState extends State<AddPrd> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                         ),
                       ],
@@ -293,8 +287,7 @@ class _AddPrdState extends State<AddPrd> {
                       children: [
                         Text(
                           "Ảnh",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         RichText(
                           textAlign: TextAlign.justify,
@@ -467,8 +460,8 @@ class _AddPrdState extends State<AddPrd> {
                                     Icons.error_outline);
                               }
                             } else {
-                              showToast("Bạn chưa chọn ảnh cho sản phẩm", context, Colors.grey,
-                                  Icons.error_outline);
+                              showToast("Bạn chưa chọn ảnh cho sản phẩm",
+                                  context, Colors.grey, Icons.error_outline);
                               setState(() {
                                 errimage = true;
                               });
@@ -477,7 +470,8 @@ class _AddPrdState extends State<AddPrd> {
                         },
                         child: Text(
                           'Tạo sản phẩm',
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
                         ),
                       ),
                     ),
@@ -526,11 +520,10 @@ class _AddPrdState extends State<AddPrd> {
           border: Border.all(color: Colors.grey, width: 1)),
       child: GridView.count(
         crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
+                    (MediaQuery.of(context).size.width / 170).floor()) >
+                0.8
+            ? (MediaQuery.of(context).size.width / 170).round()
+            : (MediaQuery.of(context).size.width / 170).floor(),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         crossAxisSpacing: 4,

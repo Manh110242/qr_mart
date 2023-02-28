@@ -6,9 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Config {
   final formatter = new NumberFormat("#,###,###");
   final colorMain = new Color(0xff0e4cbd);
+  static const green = Colors.green;
   final formatterDate = DateFormat('dd-MM-yyyy');
-  final colortextchitietdonhang =TextStyle(
-      fontSize: 15,
-      color: Colors.black87
-  );
+  final colortextchitietdonhang =
+      TextStyle(fontSize: 15, color: Colors.black87);
 }

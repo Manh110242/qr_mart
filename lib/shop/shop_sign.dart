@@ -87,7 +87,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       'Tạo doanh nghiệp',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xff8f8b21),
+                          color: Config.green,
                           fontSize: 25),
                       textAlign: TextAlign.center,
                     ),
@@ -101,8 +101,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Tên doanh nghiệp (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -113,15 +112,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -142,8 +140,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Loại doanh nghiệp (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -153,16 +150,27 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
-                                        width: 1, color: Color(0xff8f8b21))),
+                                        width: 1, color: Config.green)),
                                 child: GridView.count(
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
-                                  crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
+                                  crossAxisCount:
+                                      ((MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      170) -
+                                                  (MediaQuery.of(context)
+                                                              .size
+                                                              .width /
+                                                          170)
+                                                      .floor()) >
+                                              0.8
+                                          ? (MediaQuery.of(context).size.width /
+                                                  170)
+                                              .round()
+                                          : (MediaQuery.of(context).size.width /
+                                                  170)
+                                              .floor(),
                                   padding: EdgeInsets.all(5),
                                   childAspectRatio: 6,
                                   mainAxisSpacing: 4,
@@ -229,23 +237,22 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           height: 5,
                         ),
                         DropdownButtonFormField(
-                          style: TextStyle(color: Color(0xff8f8b21)),
+                          style: TextStyle(color: Config.green),
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           hint: Text(
                             "--Chọn loại doanh nghiêp--",
-                            style: TextStyle(color: Color(0xff8f8b21)),
+                            style: TextStyle(color: Config.green),
                           ),
                           onChanged: (value) {
                             if (listtype.length > 0) {
@@ -304,8 +311,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Tên người liên hệ (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -316,15 +322,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -345,8 +350,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Số CMT (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -357,15 +361,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -386,8 +389,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Số điện thoại (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -398,15 +400,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -427,31 +428,29 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Quy mô doanh nghiệp",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         DropdownButtonFormField(
                           value: scale,
-                          style: TextStyle(color: Color(0xff8f8b21)),
+                          style: TextStyle(color: Config.green),
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           hint: Text(
                             "--Chọn loại doanh nghiêp--",
-                            style: TextStyle(color: Color(0xff8f8b21)),
+                            style: TextStyle(color: Config.green),
                           ),
                           onChanged: (value) {
                             scale = value;
@@ -475,8 +474,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Số giấy CNDKKD (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -488,15 +486,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -517,8 +514,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Ngày cấp (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -549,15 +545,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -578,8 +573,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Nơi cấp (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -590,15 +584,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           readOnly: true,
                           showCursor: false,
@@ -635,8 +628,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Tĩnh/Thành Phố",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -647,15 +639,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           readOnly: true,
                           showCursor: false,
@@ -695,8 +686,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Quận/Huyện",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -707,15 +697,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           readOnly: true,
                           showCursor: false,
@@ -759,8 +748,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Phường/Xã",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -771,15 +759,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           readOnly: true,
                           showCursor: false,
@@ -822,8 +809,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Địa chỉ (*)",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -834,15 +820,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
@@ -863,8 +848,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                       children: [
                         Text(
                           "Thông tin chi tiết",
-                          style:
-                              TextStyle(color: Color(0xff8f8b21), fontSize: 16),
+                          style: TextStyle(color: Config.green, fontSize: 16),
                         ),
                         SizedBox(
                           height: 5,
@@ -876,15 +860,14 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                           decoration: InputDecoration(
                             errorText: null,
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xffc4a95a)),
+                              borderSide: BorderSide(color: Config.green),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color(0xff8f8b21), width: 3),
+                              borderSide:
+                                  BorderSide(color: Config.green, width: 3),
                             ),
                             border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a))),
+                                borderSide: BorderSide(color: Config.green)),
                           ),
                         ),
                       ],
@@ -947,9 +930,11 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                                 );
                               } else {
                                 MsgDialog.showMsgDialog(
-                                    context, res['error'] != null && res['error'] != ""
-                                    ? res['error']
-                                    : "Lỗi dữ liệu", "Lỗi");
+                                    context,
+                                    res['error'] != null && res['error'] != ""
+                                        ? res['error']
+                                        : "Lỗi dữ liệu",
+                                    "Lỗi");
                               }
                             } else {
                               await prefs.remove("name_Shop");
@@ -962,7 +947,7 @@ class _ScreenShopSignState extends State<ScreenShopSign> {
                                     prefs: prefs,
                                   ),
                                 ),
-                                    (Route<dynamic> route) => false,
+                                (Route<dynamic> route) => false,
                               );
                             }
                           }

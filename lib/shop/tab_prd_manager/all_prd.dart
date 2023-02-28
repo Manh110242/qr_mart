@@ -32,7 +32,7 @@ class _AllPrdState extends State<AllPrd> {
         load = true;
         page = page + 1;
         await _bloc.getPrdShop(
-            0, search.text , search.text!=null ? true: false, page);
+            0, search.text, search.text != null ? true : false, page);
         load = false;
       }
     });
@@ -47,7 +47,7 @@ class _AllPrdState extends State<AllPrd> {
 
   @override
   Widget build(BuildContext context) {
-    _bloc.getPrdShop(0, search.text,search.text!=null ?true: false, page);
+    _bloc.getPrdShop(0, search.text, search.text != null ? true : false, page);
     Size size = MediaQuery.of(context).size;
     return StreamBuilder(
         stream: _bloc.allPrdShop,
@@ -74,16 +74,14 @@ class _AllPrdState extends State<AllPrd> {
                                   EdgeInsets.only(top: 5, right: 10, left: 10),
                               errorText: null,
                               enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xffc4a95a)),
+                                borderSide: BorderSide(color: Config.green),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color(0xff8f8b21), width: 3),
+                                borderSide:
+                                    BorderSide(color: Config.green, width: 3),
                               ),
                               border: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Color(0xffc4a95a))),
+                                  borderSide: BorderSide(color: Config.green)),
                             ),
                           ),
                         ),
@@ -96,8 +94,9 @@ class _AllPrdState extends State<AllPrd> {
                               Icons.search,
                               color: Colors.white,
                             ),
-                            onPressed: ( )async {
-                             await  _bloc.getPrdShop(0,search.text,search.text != null ? true : false, page);
+                            onPressed: () async {
+                              await _bloc.getPrdShop(0, search.text,
+                                  search.text != null ? true : false, page);
                             },
                           ),
                         ),
@@ -111,13 +110,17 @@ class _AllPrdState extends State<AllPrd> {
                         physics: NeverScrollableScrollPhysics(),
                         crossAxisSpacing: 10.0,
                         mainAxisSpacing: 10.0,
-                        childAspectRatio: MediaQuery.of(context).size.width > MediaQuery.of(context).size.height ?  0.60 : 0.67,
-                        crossAxisCount: ((MediaQuery.of(context).size.width / 170) -
-                                (MediaQuery.of(context).size.width / 170)
-                                    .floor()) >
-                            0.8
-                        ? (MediaQuery.of(context).size.width / 170).round()
-                        : (MediaQuery.of(context).size.width / 170).floor(),
+                        childAspectRatio: MediaQuery.of(context).size.width >
+                                MediaQuery.of(context).size.height
+                            ? 0.60
+                            : 0.67,
+                        crossAxisCount: ((MediaQuery.of(context).size.width /
+                                        170) -
+                                    (MediaQuery.of(context).size.width / 170)
+                                        .floor()) >
+                                0.8
+                            ? (MediaQuery.of(context).size.width / 170).round()
+                            : (MediaQuery.of(context).size.width / 170).floor(),
                         primary: false,
                         children: List.generate(
                           snapshot.data.length,
@@ -142,18 +145,19 @@ class _AllPrdState extends State<AllPrd> {
                                                     MainAxisAlignment.end,
                                                 children: <Widget>[
                                                   InkWell(
-                                                    onTap: ()async {
+                                                    onTap: () async {
                                                       Navigator.pop(context);
-                                                      var res = await Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder:
-                                                                  (context) =>
-                                                                      UpdatePrd(
-                                                                        item: snapshot
-                                                                            .data[index],
-                                                                      )));
-                                                      if(res!= null){
+                                                      var res =
+                                                          await Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          UpdatePrd(
+                                                                            item:
+                                                                                snapshot.data[index],
+                                                                          )));
+                                                      if (res != null) {
                                                         setState(() {});
                                                       }
                                                     },
@@ -173,18 +177,24 @@ class _AllPrdState extends State<AllPrd> {
                                                   InkWell(
                                                     onTap: () async {
                                                       Navigator.pop(context);
-                                                      MsgDialog.showDeleteProduc(context, "Bạn có chắc chắn muốn xóa sản phẩm này", "Xóa sản phẩm", snapshot.data[index].id,xoa);
+                                                      MsgDialog.showDeleteProduc(
+                                                          context,
+                                                          "Bạn có chắc chắn muốn xóa sản phẩm này",
+                                                          "Xóa sản phẩm",
+                                                          snapshot
+                                                              .data[index].id,
+                                                          xoa);
                                                     },
                                                     child: Container(
                                                       padding:
-                                                      EdgeInsets.all(10),
+                                                          EdgeInsets.all(10),
                                                       width:
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .width,
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
                                                       color: Colors.white,
                                                       child:
-                                                      Text("Xóa sản phẩm"),
+                                                          Text("Xóa sản phẩm"),
                                                     ),
                                                   ),
                                                 ],
@@ -208,7 +218,8 @@ class _AllPrdState extends State<AllPrd> {
           }
         });
   }
-  xoa(){
+
+  xoa() {
     setState(() {});
   }
 }
