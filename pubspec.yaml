@@ -12,7 +12,7 @@ description: App flutter cho OcopMart
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-version: 1.0.2+5
+version: 1.0.3+6
 
 
 environment:

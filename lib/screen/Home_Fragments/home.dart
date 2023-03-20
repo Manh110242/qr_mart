@@ -544,6 +544,9 @@ class HomePageState extends State<HomePage> {
         future: category_bloc.getCategoryShowHome(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
+            if(snapshot.data.isEmpty){
+              return SizedBox();
+            }
             return Container(
               height: 180,
               width: MediaQuery.of(context).size.width,

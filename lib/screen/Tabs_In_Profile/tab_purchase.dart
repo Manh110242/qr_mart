@@ -50,19 +50,20 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
       future: ShopBloc().getShop(),
       builder: (_, snapshot) {
         if (snapshot.hasData) {
+          print(snapshot.data);
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 30),
-              child:  Column(
+              child: Column(
                 children: [
                   ItemClickProfile(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
                               builder: (context) => Order_Screen(
-                                index: 1,
-                              )));
+                                    index: 1,
+                                  )));
                     },
                     title: "Đơn mua",
                     iconData: Icons.receipt_long,
@@ -74,12 +75,11 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ItemClickOrder(
-                          onTap: (){
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                    builder: (context) =>
-                                        Order_Screen(
+                                    builder: (context) => Order_Screen(
                                           index: 2,
                                         )));
                           },
@@ -87,12 +87,11 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                           iconData: Icons.transfer_within_a_station,
                         ),
                         ItemClickOrder(
-                          onTap: (){
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                    builder: (context) =>
-                                        Order_Screen(
+                                    builder: (context) => Order_Screen(
                                           index: 3,
                                         )));
                           },
@@ -100,12 +99,11 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                           iconData: Icons.local_shipping_outlined,
                         ),
                         ItemClickOrder(
-                          onTap: (){
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                    builder: (context) =>
-                                        Order_Screen(
+                                    builder: (context) => Order_Screen(
                                           index: 4,
                                         )));
                           },
@@ -113,12 +111,11 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                           iconData: Icons.done_all_outlined,
                         ),
                         ItemClickOrder(
-                          onTap: (){
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 new MaterialPageRoute(
-                                    builder: (context) =>
-                                        Order_Screen(
+                                    builder: (context) => Order_Screen(
                                           index: 2,
                                         )));
                           },
@@ -132,7 +129,7 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       ItemClickProfile(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                               context,
                               new MaterialPageRoute(
@@ -152,19 +149,21 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                       //   iconData: Icons.phone_android_sharp,
                       // ),
                       ItemClickProfile(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => DiaChiScreen(
                                 title: "Địa chỉ",
-                              ),),);
+                              ),
+                            ),
+                          );
                         },
                         title: "Địa chỉ",
                         iconData: Icons.location_on_outlined,
                       ),
                       ItemClickProfile(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -174,7 +173,7 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                         iconData: Icons.qr_code,
                       ),
                       ItemClickProfile(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                               context,
                               new MaterialPageRoute(
@@ -184,24 +183,25 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                         iconData: Icons.favorite_border,
                       ),
                       ItemClickProfile(
-                        onTap: (){
-                          launch('${Const().domain}/management/shop-affiliate/index.html');
+                        onTap: () {
+                          launch(
+                              '${Const().domain}/management/shop-affiliate/index.html');
                         },
                         title: "Quản lý Affiliate",
                         iconData: Icons.folder_open,
                       ),
                       ItemClickProfile(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                               context,
                               new MaterialPageRoute(
                                   builder: (context) => Introduction()));
                         },
-                        title:  "Giới thiệu $appName",
+                        title: "Giới thiệu $appName",
                         iconData: Icons.account_tree,
                       ),
                       ItemClickProfile(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                               context,
                               new MaterialPageRoute(
@@ -211,7 +211,7 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                         iconData: Icons.create_outlined,
                       ),
                       ItemClickProfile(
-                        onTap: (){
+                        onTap: () {
                           Navigator.push(
                               context,
                               new MaterialPageRoute(
@@ -220,36 +220,36 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                         title: "Đổi mật khẩu cấp 2",
                         iconData: Icons.colorize,
                       ),
-                      snapshot.hasData ? ItemClickProfile(
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) =>
-                                      ScreenShopSign(
-                                        title:
-                                        "Thiết lập doanh nghiệp",
-                                      )));
-                        },
-                        title: "Thiết lập doanh nghiệp",
-                        iconData: Icons.folder_shared_outlined,
-                      ) : ItemClickProfile(
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) => ShopManager()));
-                        },
-                        title: "Quản lý doanh nghiệp",
-                        iconData: Icons.folder_shared_outlined,
-                      ),
+                      snapshot.data == true
+                          ? ItemClickProfile(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                        builder: (context) => ShopManager()));
+                              },
+                              title: "Quản lý doanh nghiệp",
+                              iconData: Icons.folder_shared_outlined,
+                            )
+                          : ItemClickProfile(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                        builder: (context) => ScreenShopSign(
+                                              title: "Thiết lập doanh nghiệp",
+                                            )));
+                              },
+                              title: "Thiết lập doanh nghiệp",
+                              iconData: Icons.folder_shared_outlined,
+                            ),
                     ],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       ItemClickProfile(
-                        onTap: (){
+                        onTap: () {
                           MsgDialog.showMsgDialog(
                             context,
                             "Bạn có muốn xóa tài khoản này không ?",
@@ -271,7 +271,7 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                         iconData: CupertinoIcons.trash,
                       ),
                       ItemClickProfile(
-                        onTap: (){
+                        onTap: () {
                           MsgDialog.showMsgDialog(
                             context,
                             "Bạn có muốn đăng xuất không ?",
@@ -288,7 +288,9 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 40,)
+                  SizedBox(
+                    height: 40,
+                  )
                 ],
               ),
             ),
@@ -311,14 +313,11 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border(
-            bottom: BorderSide(
-                color: Colors.grey.shade200,
-                width: 0.5
-            ),
+            bottom: BorderSide(color: Colors.grey.shade200, width: 0.5),
           ),
         ),
         child: Row(
@@ -338,11 +337,13 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
                 ),
               ),
             ),
-            isNext ? Icon(
-              Icons.navigate_next,
-              color: Colors.grey,
-              size: 25,
-            ) : SizedBox()
+            isNext
+                ? Icon(
+                    Icons.navigate_next,
+                    color: Colors.grey,
+                    size: 25,
+                  )
+                : SizedBox()
           ],
         ),
       ),
@@ -363,17 +364,18 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
             size: 25,
             color: Colors.black54,
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           Text(
             title,
-            style: TextStyle(
-                color: Colors.black54,
-                fontSize: 13),
+            style: TextStyle(color: Colors.black54, fontSize: 13),
           ),
         ],
       ),
     );
   }
+
   logout() async {
     prefs.removeString('islogin_v2');
     prefs.removeString('id');
@@ -401,16 +403,14 @@ class _Tab_Purchase_State extends State<Tab_Purchase> {
     String phoneFB = widget.prefs.getString(Dbkeys.phone);
     widget.prefs.remove(Dbkeys.phone);
 
-    try{
+    try {
       await FirebaseFirestore.instance
           .collection(DbPaths.collectionusers)
           .doc(phoneFB)
           .update({
         Dbkeys.notificationTokens: [],
       });
-    }catch(e){
-
-    }
+    } catch (e) {}
 
     SharedPreferences prefss = await SharedPreferences.getInstance();
 

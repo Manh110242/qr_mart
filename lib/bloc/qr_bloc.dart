@@ -47,6 +47,8 @@ class QrBloc {
     request_body['otp'] = pass;
     request_body['token'] = token_qr;
     request_body['money'] = money;
+    print(json.encode(request_body));
+    print(token);
     var response = await Const.web_api
         .postAsync("/app/coin/payment-qr", token, request_body);
     if (response != null) {

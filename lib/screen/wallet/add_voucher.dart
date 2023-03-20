@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+
 /**
  * Created by trungduc.vnu@gmail.com.
  */
@@ -162,141 +163,141 @@ class _AddVoucherState extends State<AddVoucher> {
             ),
           ),
           Container(
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5), color: Colors.white),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Ngân hàng: ',
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 15,
-                        ),
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5), color: Colors.white),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Ngân hàng: ',
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 15,
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Text(
-                          data['bank_name'].toString(),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Divider(
-                      color: Colors.black26,
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Số tài khoản: ',
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 15,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Text(
-                          data['number'].toString(),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Divider(
-                      color: Colors.black26,
+                    SizedBox(
+                      width: 10,
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Chủ tài khoản: ',
+                    Expanded(
+                      child: Text(
+                        data['bank_name'].toString(),
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.right,
                         style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 15,
-                        ),
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Text(
-                          data['user_name'].toString(),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Divider(
+                    color: Colors.black26,
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
-                    child: Divider(
-                      color: Colors.black26,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Số tài khoản: ',
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 15,
+                      ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Chi nhánh: ',
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Text(
+                        data['number'].toString(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.right,
                         style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 15,
-                        ),
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Text(
-                          data['address'].toString(),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Divider(
+                    color: Colors.black26,
                   ),
-                ],
-              ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Chủ tài khoản: ',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 15,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Text(
+                        data['user_name'].toString(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Divider(
+                    color: Colors.black26,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Chi nhánh: ',
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 15,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Text(
+                        data['address'].toString(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                ),
+              ],
             ),
+          ),
           Padding(
             padding: EdgeInsets.only(top: 15),
             child: Row(
@@ -391,36 +392,53 @@ class _AddVoucherState extends State<AddVoucher> {
       MsgDialog.showMsgDialog(
           context, 'Bạn chưa tải lên hình ảnh xác thực giao dịch', 'Lỗi');
     } else {
-      LoadingDialog.showLoadingDialog(context, 'Loadding');
-      String fileName1 = _file1.path.split('/').last;
-      String fileName2 = _file2.path.split('/').last;
-      var token = await Const.web_api.getTokenUser();
-      var user_id = await Const.web_api.getUserId();
-      Map<String, dynamic> request_body = new Map<String, dynamic>();
-      var order = new Map();
-      order['payment_method'] = 'CK';
-      order['money'] = _vController.text;
-      request_body['user_id'] = user_id;
-      request_body['Order'] = order;
-      request_body['image1'] =
-          await MultipartFile.fromFile(_file1.path, filename: fileName1);
-      request_body['image2'] =
-          await MultipartFile.fromFile(_file2.path, filename: fileName2);
+      dio.interceptors.add(
+        InterceptorsWrapper(onError: (DioError e) {
+          print(
+              "#################################### error: [${e.response?.statusCode}] >> ${e.response?.data}");
+        }),
+      );
+      try {
+        LoadingDialog.showLoadingDialog(context, 'Loadding');
+        String fileName1 = _file1.path.split('/').last;
+        String fileName2 = _file2.path.split('/').last;
+        var token = await Const.web_api.getTokenUser();
+        var user_id = await Const.web_api.getUserId();
+        Map<String, dynamic> request_body = new Map<String, dynamic>();
+        var order = new Map();
+        order['payment_method'] = 'CK';
+        order['money'] = _vController.text;
+        request_body['user_id'] = user_id;
+        request_body['Order'] = order;
+        request_body['image1'] =
+            await MultipartFile.fromFile(_file1.path, filename: fileName1);
+        request_body['image2'] =
+            await MultipartFile.fromFile(_file2.path, filename: fileName2);
 
-      FormData formData = new FormData.fromMap(request_body);
-      var response = await dio.post(Const().api_host + "/app/coin/add-voucher",
-          data: formData, options: Options(headers: {'token': token}));
-      var res = response.data;
-      if (res['code'] == 0) {
-        LoadingDialog.hideLoadingDialog(context);
-        MsgDialog.showMsgDialog(context, res['error'], 'Lỗi');
-      } else {
-        LoadingDialog.hideLoadingDialog(context);
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (context) => TransferSuccess('Nạp V thành công')),
-            ModalRoute.withName("/"));
+        FormData formData = new FormData.fromMap(request_body);
+        print(token);
+
+        var response = await dio.post(
+          Const().api_host + "/app/coin/add-voucher",
+          data: formData,
+          options: Options(
+            headers: {'token': token},
+          ),
+        );
+        var res = response.data;
+        if (res['code'] == 0) {
+          LoadingDialog.hideLoadingDialog(context);
+          MsgDialog.showMsgDialog(context, res['error'], 'Lỗi');
+        } else {
+          LoadingDialog.hideLoadingDialog(context);
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => TransferSuccess('Nạp V thành công')),
+              ModalRoute.withName("/"));
+        }
+      } catch (e) {
+        print(e);
       }
     }
   }

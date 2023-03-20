@@ -541,7 +541,9 @@ class ShopBloc {
     request_body['user_id'] = user_id;
     var res = await Const.web_api.postAsync("/app/mshop", token, request_body);
     if(res != null){
-      return true;
+     if(res['code'] == 1){
+       return true;
+     }
     }
     return false;
   }
